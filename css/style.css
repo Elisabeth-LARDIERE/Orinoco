@@ -11,6 +11,10 @@
 
 /******************** BODY ********************/
 
+body {
+    display: flex;
+    flex-direction: column;
+}
 /*************** links ***************/
 
 /*************** headings ***************/
@@ -18,12 +22,36 @@
 
 /******************** HEADER ********************/
 
-
-
-/******************** MAIN ********************/
-main {
-    display : flex;
+header {
+    min-height: 20vh;
+    background-color: #F3E9F1;
 }
 
+/******************** MAIN ********************/
+
+/*************** Liste ***************/
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.teddyBox {
+    display: flex;
+    flex-direction: column;
+    /*border: solid black;*/
+    width: 50%;
+    align-items: center;
+    padding: 15px;
+}
+
+.teddyImage {
+    width: 50%;
+}
 
 /******************** FOOTER ********************/
+footer {
+    min-height: 20vh;
+    background-color: #F3E9F1;
+}

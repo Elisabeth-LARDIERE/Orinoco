@@ -36,6 +36,7 @@ function displayTeddies(teddies) {
         teddyBox.classList.add("teddyBox");
         teddyName.classList.add("teddyName");
         teddyImage.classList.add("teddyImage");
+        teddyImage.setAttribute("src", teddy.imageUrl);
         teddyLink.classList.add("teddyLink");
         teddyPrice.classList.add("teddyPrice");
 
@@ -47,9 +48,8 @@ function displayTeddies(teddies) {
         teddyBox.appendChild(teddyPrice);
         teddyImage.appendChild(teddyLink);
 
-// Ajout du contenu texte et image pour chaque ourson
+// Ajout du contenu pour chaque ourson
         teddyName.innerHTML = teddy.name;
-        teddyImage.setAttribute("src", teddy.imageUrl);
         teddyPrice.innerHTML = teddy.price;
     }
 }

@@ -58,6 +58,17 @@ ul {
     width: 100%;
 }
 
+/*************** Fiche produit ours ***************/
+
+.teddyCard {
+    width: 50%;
+    margin: 20px;
+    border: solid black;
+}
+
+.teddyImageCard {
+    width: 70%;
+}
 /******************** FOOTER ********************/
 footer {
     min-height: 20vh;

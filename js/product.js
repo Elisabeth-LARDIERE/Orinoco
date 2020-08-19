@@ -21,15 +21,19 @@ fetch("http://localhost:3000/api/teddies/" +idTeddy)
 
 let main = document.querySelector("main");
 
+// Ajout d'attributs aux éléments du DOM
+
+main.classList.add("main_product");
+
 // Création des nouveaux éléments du DOM
 
 let teddyCard = document.createElement("div");
-let teddyNameCard = document.createElement("h1");
+let teddyView = document.createElement("div");
+let teddyNameCard = document.createElement("h3");
 let teddyImageCard = document.createElement("img");
 let teddyDescription = document.createElement("p");
 
 // Affichage de l'ourson sélectionné
-
 
 function displayCard(teddy) {
     for(let param in teddy) {
@@ -37,6 +41,7 @@ function displayCard(teddy) {
 // Ajout des attributs aux nouveaux éléments du DOM
 
         teddyCard.classList.add("teddyCard");
+        teddyView.classList.add("teddyView");
         teddyNameCard.classList.add("teddyNameCard");
         teddyImageCard.classList.add("teddyImageCard");
         teddyImageCard.setAttribute("src", teddy.imageUrl);
@@ -45,8 +50,9 @@ function displayCard(teddy) {
 // Intégration des nouveaux éléments au DOM
 
         main.appendChild(teddyCard);
-        teddyCard.appendChild(teddyNameCard);
-        teddyCard.appendChild(teddyImageCard);
+        teddyCard.appendChild(teddyView);
+        teddyView.appendChild(teddyNameCard);
+        teddyView.appendChild(teddyImageCard);
         teddyCard.appendChild(teddyDescription);
 
 // Ajout du contenu pour chaque carte d'ourson

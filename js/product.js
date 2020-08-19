@@ -1,4 +1,5 @@
-// Récupération de la liste des identifiants des oursons auprès de l'API
+// Récupération des oursons individuels auprès de l'API
+
 let idTeddy = location.search.slice(1);
 console.log(idTeddy);
 
@@ -27,11 +28,14 @@ main.classList.add("main_product");
 
 // Création des nouveaux éléments du DOM
 
-let teddyCard = document.createElement("div");
+let teddyCard = document.createElement("section");
 let teddyView = document.createElement("div");
 let teddyNameCard = document.createElement("h3");
 let teddyImageCard = document.createElement("img");
 let teddyDescription = document.createElement("p");
+let teddyOrderBox = document.createElement("section");
+let teddyOrderCall = document.createElement("h4");
+let teddyOrderButton = document.createElement("button");
 
 // Affichage de l'ourson sélectionné
 
@@ -46,6 +50,9 @@ function displayCard(teddy) {
         teddyImageCard.classList.add("teddyImageCard");
         teddyImageCard.setAttribute("src", teddy.imageUrl);
         teddyDescription.classList.add("teddyDescription");
+        teddyOrderBox.classList.add("teddyOrderBox");
+        teddyOrderCall.classList.add("teddyOrderCall");
+        teddyOrderButton.classList.add("teddyOrderButton");
 
 // Intégration des nouveaux éléments au DOM
 
@@ -54,11 +61,15 @@ function displayCard(teddy) {
         teddyView.appendChild(teddyNameCard);
         teddyView.appendChild(teddyImageCard);
         teddyCard.appendChild(teddyDescription);
+        main.appendChild(teddyOrderBox);
+        teddyOrderBox.appendChild(teddyOrderCall);
+        teddyOrderBox.appendChild(teddyOrderButton);
 
 // Ajout du contenu pour chaque carte d'ourson
 
         teddyNameCard.textContent = teddy.name;
         teddyDescription.textContent = teddy.description;
+        teddyOrderCall.textContent = "Commander" + " " + teddy.name;
     }
 }
 

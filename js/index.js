@@ -1,4 +1,5 @@
 // Récupération de la liste des oursons auprès de l'API
+
 fetch("http://localhost:3000/api/teddies")
     .then(function(response) {
         if(response.ok) {
@@ -15,17 +16,21 @@ fetch("http://localhost:3000/api/teddies")
     });
 
 // Récupération des éléments du DOM
+
 let main = document.querySelector("main");
 
 // Création des nouveaux éléments du DOM : liste
+
 let introList = document.createElement("h2");
 let teddiesList = document.createElement("ul");
 
 // Affichage de la liste des oursons disponibles
+
 function displayTeddies(teddies) {
     for(let teddy of teddies) {
 
-// Création des nouveaux éléments du DOM : conteneurs individuels d'oursons avec nom/image/lien vers l'ours/prix
+// Création des nouveaux éléments du DOM : conteneurs d'oursons avec nom/image/lien vers fiche produit/prix
+
         let teddyBox= document.createElement("li");
         let teddyName = document.createElement("h3");
         let teddyImage = document.createElement("img");
@@ -33,6 +38,7 @@ function displayTeddies(teddies) {
         let teddyPrice = document.createElement("p");
 
 // Ajout des attributs aux nouveaux éléments du DOM
+
         introList.setAttribute("id", "introList");
         teddiesList.classList.add("teddiesList");
         teddyBox.classList.add("teddyBox");
@@ -44,6 +50,7 @@ function displayTeddies(teddies) {
         teddyPrice.classList.add("teddyPrice");
 
 // Intégration des nouveaux éléments au DOM
+
         main.appendChild(introList);
         main.appendChild(teddiesList);
         teddiesList.appendChild(teddyBox);
@@ -53,6 +60,7 @@ function displayTeddies(teddies) {
         teddyLink.appendChild(teddyImage);
 
 // Ajout du contenu pour chaque ourson
+
         introList.textContent = "Notre sélection d'ours en peluche";
         teddyName.textContent = teddy.name;
         teddyPrice.textContent = (teddy.price / 100).toFixed(2) + " €";

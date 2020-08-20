@@ -195,6 +195,37 @@ ul {
     font-family: "Marck Script", serif;
 }
 
+/*************** Panier et formulaire de contact ***************/
+
+.main_cart {
+    display: flex;
+    flex-direction: row;
+}
+
+/********** panier **********/
+
+.cart {
+    display: flex;
+    flex-direction: column;
+    border: solid blue;
+}
+
+.cartTeddy {
+    display: flex;
+}
+
+.cartTeddyQuantity {
+    display: flex;
+    flex-direction: column;
+}
+
+.cartTotalBox {
+    display: flex;
+}
+
+.form {
+    border: solid blue;
+}
 /******************** FOOTER ********************/
 
 footer {

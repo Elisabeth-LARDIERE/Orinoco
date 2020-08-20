@@ -58,11 +58,11 @@ function displayCard(teddy) {
         teddyOrderBox.classList.add("teddyOrderBox"); /* section options et ajout au panier */
         teddyChoiceBox.classList.add("teddyChoiceBox");
         teddyColor.classList.add("teddyColor");
-        teddyColorTitle.classList.add("teddyColorTitle", "choiceTitle");
-        teddyColorButton.classList.add("teddyColorButton", "choiceButton");
+        teddyColorTitle.classList.add("teddyColorTitle", "title");
+        teddyColorButton.classList.add("teddyColorButton", "button");
         teddyQuantity.classList.add("teddyQuantity");
-        teddyQuantityTitle.classList.add("teddyQuantityTitle", "choiceTitle");
-        teddyQuantityButton.classList.add("teddyQuantityButton", "choiceButton");
+        teddyQuantityTitle.classList.add("teddyQuantityTitle", "title");
+        teddyQuantityButton.classList.add("teddyQuantityButton", "button");
         teddyQuantityButton.setAttribute("type", "number");
         teddyQuantityButton.setAttribute("min", "1");
 

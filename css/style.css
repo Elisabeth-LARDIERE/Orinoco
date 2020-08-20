@@ -36,6 +36,20 @@
     url("../fonts/josefin-slab-v10-latin/josefin-slab-v10-latin-regular.svg#JosefinSlab") format("svg"); /* Legacy iOS */
 }
 
+/* roboto-regular - latin */
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/roboto-v20-latin/roboto-v20-latin-regular.eot"); /* IE9 Compat Modes */
+    src: local("Roboto"), local("Roboto-Regular"),
+    url("../fonts/roboto-v20-latin/roboto-v20-latin-regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../fonts/roboto-v20-latin/roboto-v20-latin-regular.woff2") format("woff2"), /* Super Modern Browsers */
+    url("../fonts/roboto-v20-latin/roboto-v20-latin-regular.woff") format("woff"), /* Modern Browsers */
+    url("../fonts/roboto-v20-latin/roboto-v20-latin-regular.ttf") format("truetype"), /* Safari, Android, iOS */
+    url("../fonts/roboto-v20-latin/roboto-v20-latin-regular.svg#Roboto") format("svg"); /* Legacy iOS */
+}
+
 /******************** BODY ********************/
 
 body {
@@ -60,6 +74,13 @@ h3 {
     font-family: "Marck Script", serif;
     font-size: 1.2em;
     font-weight: lighter;
+}
+
+/*************** buttons ***************/
+
+.button {
+    font-family: "Robot", serif;
+    font-style: italic;
 }
 
 /******************** HEADER ********************/

@@ -33,10 +33,10 @@ let teddyDescription = document.createElement("p");
 let teddyOrderBox = document.createElement("section"); /* section options et ajout au panier */
 let teddyChoiceBox = document.createElement("div");
 let teddyColor = document.createElement("div");
-let teddyColorTitle = document.createElement("p");
+let teddyColorTitle = document.createElement("label");
 let teddyColorButton = document.createElement("select");
 let teddyQuantity = document.createElement("div");
-let teddyQuantityTitle = document.createElement("p");
+let teddyQuantityTitle = document.createElement("label");
 let teddyQuantityButton = document.createElement("input");
 let teddyOrderButton = document.createElement("button");
 
@@ -59,7 +59,9 @@ function displayCard(teddy) {
         teddyChoiceBox.classList.add("teddyChoiceBox");
         teddyColor.classList.add("teddyColor");
         teddyColorTitle.classList.add("teddyColorTitle", "title");
+        teddyColorTitle.setAttribute("for", "color");
         teddyColorButton.classList.add("teddyColorButton", "button");
+        teddyColorButton.setAttribute("id", "color");
         teddyQuantity.classList.add("teddyQuantity");
         teddyQuantityTitle.classList.add("teddyQuantityTitle", "title");
         teddyQuantityButton.classList.add("teddyQuantityButton", "button");
@@ -96,14 +98,25 @@ function displayCard(teddy) {
 
     }
 
-    // création de la liste d'options déroulante
+    // création de la liste d'options déroulante et stockage du choix de la couleur
+
+    let teddyColorButtonFirstChild = teddyColorButton.firstChild;
+    let introColorOptions = document.createElement("option");
+    teddyColorButton.insertBefore(introColorOptions, teddyColorButtonFirstChild);
+    introColorOptions.textContent = "Veuillez choisir une couleur";
 
     for(let color of teddy.colors) {
         let teddyColorButtonOptions = document.createElement("option");
         teddyColorButtonOptions.classList.add("teddyColorButtonOptions");
+        teddyColorButtonOptions.setAttribute("value", color);
         teddyColorButton.appendChild(teddyColorButtonOptions);
         teddyColorButtonOptions.textContent = color;
     }
+
+    function setColor() {
+        localStorage.setItem("teddyColorButtonOptions", this.value);
+    }
+    teddyColorButton.addEventListener("change", setColor);
 }
 
 

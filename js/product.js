@@ -44,7 +44,7 @@ let teddyOrderButton = document.createElement("button");
 
 function displayCard(teddy) {
 
-    for(let param in teddy) {
+    for (let param in teddy) {
 
         // ajout des attributs aux nouveaux éléments du DOM
 
@@ -105,7 +105,7 @@ function displayCard(teddy) {
     teddyColorButton.insertBefore(introColorOptions, teddyColorButtonFirstChild);
     introColorOptions.textContent = "Veuillez choisir une couleur";
 
-    for(let color of teddy.colors) {
+    for (let color of teddy.colors) {
         let teddyColorButtonOptions = document.createElement("option");
         teddyColorButtonOptions.classList.add("teddyColorButtonOptions");
         teddyColorButtonOptions.setAttribute("value", color);
@@ -117,6 +117,19 @@ function displayCard(teddy) {
         localStorage.setItem("teddyColorButtonOptions", this.value);
     }
     teddyColorButton.addEventListener("change", setColor);
+
+    function setQuantity() {
+        localStorage.setItem("teddyQuantityButton", this.value);
+    }
+    teddyQuantityButton.addEventListener("click", setQuantity);
+
+    function addToCart() {
+        localStorage.setItem("teddyNameCard", teddy.name);
+        localStorage.setItem("teddyImageCard", teddy.imageUrl);
+    }
+
+    teddyOrderButton.addEventListener("click", addToCart);
+
 }
 
 

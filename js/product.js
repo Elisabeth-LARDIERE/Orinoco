@@ -3,20 +3,25 @@
 let idTeddy = location.search.slice(1);
 console.log(idTeddy);
 
-fetch("http://localhost:3000/api/teddies/" +idTeddy)
-    .then(function(response) {
-        if(response.ok) {
+fetch("http://localhost:3000/api/teddies/" + idTeddy)
+    .then(function (response) {
+        if (response.ok) {
             response.json()
-                .then(function(teddy) {
+                .then(function (teddy) {
                     console.log(teddy);
                     displayCard(teddy);
                 })
         }
     })
-    .catch(function() {
+    .catch(function () {
         console.log("erreur");
         alert("erreur");
     })
+
+// Création d'un tableau de stockage des données dans le localstorage
+
+let cart = [];
+localStorage.setItem("cart", JSON.stringify(cart));
 
 // Récupération des éléments existants du DOM
 
@@ -28,7 +33,10 @@ let teddyCard = document.createElement("section"); /* section vue détaillée et
 let teddyView = document.createElement("div");
 let teddyNameCard = document.createElement("h3");
 let teddyImageCard = document.createElement("img");
-let teddyDescription = document.createElement("p");
+let teddyDescription = document.createElement("div");
+let teddyText = document.createElement("p");
+let teddyPriceCard = document.createElement("p");
+
 
 let teddyOrderBox = document.createElement("section"); /* section options et ajout au panier */
 let teddyChoiceBox = document.createElement("div");
@@ -54,6 +62,8 @@ function displayCard(teddy) {
         teddyImageCard.classList.add("teddyImageCard");
         teddyImageCard.setAttribute("src", teddy.imageUrl);
         teddyDescription.classList.add("teddyDescription");
+        teddyText.classList.add("teddyText");
+        teddyPriceCard.classList.add("teddyPriceCard");
 
         teddyOrderBox.classList.add("teddyOrderBox"); /* section options et ajout au panier */
         teddyChoiceBox.classList.add("teddyChoiceBox");
@@ -77,6 +87,8 @@ function displayCard(teddy) {
         teddyView.appendChild(teddyNameCard);
         teddyView.appendChild(teddyImageCard);
         teddyCard.appendChild(teddyDescription);
+        teddyDescription.appendChild(teddyText);
+        teddyDescription.appendChild(teddyPriceCard);
 
         main.appendChild(teddyOrderBox); /* section options et ajout au panier */
         teddyOrderBox.appendChild(teddyChoiceBox);
@@ -91,45 +103,49 @@ function displayCard(teddy) {
         // ajout de contenu
 
         teddyNameCard.textContent = teddy.name; /* section vue détaillée et description ours */
-        teddyDescription.textContent = teddy.description;
+        teddyText.textContent = teddy.description;
+        teddyPriceCard.textContent = (teddy.price / 100).toFixed(2) + " €";
 
         teddyColorTitle.textContent = "Couleur"; /* section options et ajout au panier */
         teddyQuantityTitle.textContent = "Quantité";
 
     }
 
-    // création de la liste d'options déroulante et stockage du choix de la couleur
+    // création de la liste déroulante du choix de couleurs
 
     let teddyColorButtonFirstChild = teddyColorButton.firstChild;
     let introColorOptions = document.createElement("option");
     teddyColorButton.insertBefore(introColorOptions, teddyColorButtonFirstChild);
     introColorOptions.textContent = "Veuillez choisir une couleur";
 
-    for (let color of teddy.colors) {
-        let teddyColorButtonOptions = document.createElement("option");
-        teddyColorButtonOptions.classList.add("teddyColorButtonOptions");
-        teddyColorButtonOptions.setAttribute("value", color);
-        teddyColorButton.appendChild(teddyColorButtonOptions);
-        teddyColorButtonOptions.textContent = color;
+    // choix de la couleur
+
+    function colorChoice(teddy) {
+        for (let color of teddy.colors) {
+            let teddyColorButtonOptions = document.createElement("option");
+            teddyColorButtonOptions.classList.add("teddyColorButtonOptions");
+            teddyColorButtonOptions.setAttribute("value", color);
+            teddyColorButton.appendChild(teddyColorButtonOptions);
+            teddyColorButtonOptions.textContent = color;
+
+            function setColor() {
+                localStorage.setItem("teddyColorButtonOptions", this.value);
+            }
+            teddyColorButton.addEventListener("change", setColor);
+        }
     }
 
-    function setColor() {
-        localStorage.setItem("teddyColorButtonOptions", this.value);
-    }
-    teddyColorButton.addEventListener("change", setColor);
+    // stockage des données dans le tableau du localstorage
 
+    localStorage.setItem("id", idTeddy);
+    localStorage.setItem("name", teddy.name);
+    localStorage.setItem("image", teddy.imageUrl);
+    localStorage.setItem("price", teddy.price);
+    colorChoice(teddy);
     function setQuantity() {
         localStorage.setItem("teddyQuantityButton", this.value);
     }
     teddyQuantityButton.addEventListener("click", setQuantity);
-
-    function addToCart() {
-        localStorage.setItem("teddyNameCard", teddy.name);
-        localStorage.setItem("teddyImageCard", teddy.imageUrl);
-    }
-
-    teddyOrderButton.addEventListener("click", addToCart);
-
 }
 
 

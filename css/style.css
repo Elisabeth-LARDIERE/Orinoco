@@ -169,9 +169,17 @@ ul {
 }
 
 .teddyDescription {
+    display: flex;
+    flex-direction: column;
     font-family: "Josefin Slab", serif;
     margin-right: 15px;
     line-height: 1.2em;
+}
+
+.teddyPriceCard {
+    font-family: "Marck Script", serif;
+    text-align: center;
+    padding-top: 15px;
 }
 
 /********** section options et ajout au panier **********/

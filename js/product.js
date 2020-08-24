@@ -18,11 +18,6 @@ fetch("http://localhost:3000/api/teddies/" + idTeddy)
         alert("erreur");
     })
 
-// Création d'un tableau de stockage des données dans le localstorage
-
-let cart = [];
-localStorage.setItem("cart", JSON.stringify(cart));
-
 // Récupération des éléments existants du DOM
 
 let main = document.querySelector("main");
@@ -111,42 +106,34 @@ function displayCard(teddy) {
 
     }
 
-    // création de la liste déroulante du choix de couleurs
-
-    let teddyColorButtonFirstChild = teddyColorButton.firstChild;
-    let introColorOptions = document.createElement("option");
-    teddyColorButton.insertBefore(introColorOptions, teddyColorButtonFirstChild);
-    introColorOptions.textContent = "Veuillez choisir une couleur";
-
     // choix de la couleur
 
-    function colorChoice(teddy) {
-        for (let color of teddy.colors) {
-            let teddyColorButtonOptions = document.createElement("option");
-            teddyColorButtonOptions.classList.add("teddyColorButtonOptions");
-            teddyColorButtonOptions.setAttribute("value", color);
-            teddyColorButton.appendChild(teddyColorButtonOptions);
-            teddyColorButtonOptions.textContent = color;
+    for (let color of teddy.colors) {
+        let teddyColorButtonOptions = document.createElement("option");
+        teddyColorButtonOptions.classList.add("teddyColorButtonOptions");
+        teddyColorButtonOptions.setAttribute("value", color);
+        teddyColorButton.appendChild(teddyColorButtonOptions);
+        teddyColorButtonOptions.textContent = color;
+    }
 
-            function setColor() {
-                localStorage.setItem("teddyColorButtonOptions", this.value);
-            }
-            teddyColorButton.addEventListener("change", setColor);
+    // stockage des données dans le localstorage
+
+    function addToCart() {
+        let teddyCart = {
+            name: teddy.name,
+            image: teddy.imageUrl,
+            price: (teddy.price / 100).toFixed(2),
+            quantity: teddyQuantityButton.value,
+            color: teddyColorButton.value
         }
+        let userCart = JSON.stringify(teddyCart);
+        localStorage.setItem(idTeddy, userCart);
     }
 
-    // stockage des données dans le tableau du localstorage
-
-    localStorage.setItem("id", idTeddy);
-    localStorage.setItem("name", teddy.name);
-    localStorage.setItem("image", teddy.imageUrl);
-    localStorage.setItem("price", teddy.price);
-    colorChoice(teddy);
-    function setQuantity() {
-        localStorage.setItem("teddyQuantityButton", this.value);
-    }
-    teddyQuantityButton.addEventListener("click", setQuantity);
+    teddyOrderButton.addEventListener("click", addToCart);
 }
+
+
 
 
 

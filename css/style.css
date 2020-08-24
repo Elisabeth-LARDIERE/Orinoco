@@ -112,7 +112,7 @@ nav li span {
 /******************** MAIN ********************/
 
 main {
-    /*flex: 1;*/
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -251,6 +251,11 @@ ul {
 
 /********** panier **********/
 
+
+.cartTitle, .formTitle {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 .cartBox {
     width: 50%;
     display: flex;
@@ -259,14 +264,35 @@ ul {
 
 .cartSubtitlesBox {
     display: flex;
+    font-family: "Josefin Slab", serif;
+    font-size: 0.8em;
 }
 
 .cartRecapProduct {
     display: flex;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.cartProductView {
+    display: flex;
+    font-family: "Marck Script", serif;
+    align-items: center;
+    padding: 10px;
+    width: 70%;
 }
 
 .cartProductImage {
-    width: 20%;
+    width: 30%;
+}
+
+.cartProductName {
+    padding: 10px;
+}
+
+.cartProductColor {
+    font-size: 0.7em;
 }
 
 .cartQuantityBloc {
@@ -280,6 +306,8 @@ ul {
 
 .cartTotal {
     display: flex;
+    justify-content: flex-end;
+    font-family: "Josefin Slab", serif;
 }
 
 /******************** FOOTER ********************/

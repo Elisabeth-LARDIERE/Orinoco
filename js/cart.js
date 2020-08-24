@@ -61,19 +61,23 @@ for(let teddy in teddiesCart) {
     cartRecapProduct.classList.add("cartRecapProduct");
     cartBox.appendChild(cartRecapProduct);
 
+    let cartProductView = document.createElement("div");
+    cartProductView.classList.add("cartProductView");
+    cartRecapProduct.appendChild(cartProductView);
+
     let cartProductImage = document.createElement("img");
     cartProductImage.classList.add("cartProductImage");
     cartProductImage.setAttribute("src", teddy.image);
-    cartRecapProduct.appendChild(cartProductImage);
+    cartProductView.appendChild(cartProductImage);
 
     let cartProductName = document.createElement("p");
     cartProductName.classList.add("cartProductName");
-    cartRecapProduct.appendChild(cartProductName);
-    cartProductName.textContent = teddy.name;
+    cartProductView.appendChild(cartProductName);
+    cartProductName.textContent = teddy.name + " - ";
 
     let cartProductColor = document.createElement("p");
     cartProductColor.classList.add("cartProductColor");
-    cartRecapProduct.appendChild(cartProductColor);
+    cartProductView.appendChild(cartProductColor);
     cartProductColor.textContent = teddy.color;
 
     let cartQuantityBloc = document.createElement("div");
@@ -101,11 +105,14 @@ for(let teddy in teddiesCart) {
     cartQuantityButtonBox.appendChild(cartQuantityLess);
     cartQuantityLess.textContent = " - ";
 
-    let cartPrice = document.createElement("button");
-    cartPrice.classList.add("cartPrice");
-    cartPrice.setAttribute("type", "number");
-    cartRecapProduct.appendChild(cartPrice);
-    cartPrice.textContent = teddy.price;
+    let cartPriceBloc = document.createElement("div");
+    cartPriceBloc.classList.add("cartPriceBloc");
+    cartRecapProduct.appendChild(cartPriceBloc);
+
+    let cartPriceChamp = document.createElement("button");
+    cartPriceChamp.classList.add("cartPriceChamp");
+    cartPriceChamp.setAttribute("type", "number");
+    cartPriceBloc.appendChild(cartPriceChamp);
 }
 
 let cartTotal = document.createElement("div");

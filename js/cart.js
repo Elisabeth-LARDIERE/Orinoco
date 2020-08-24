@@ -1,186 +1,126 @@
-// Récupération du localstorage
-
-let teddyCart = JSON.parse(localStorage.getItem(idTeddy));
-
-// Récupération des éléments existants du DOM
+// Récupération des éléments du DOM
 
 let main = document.querySelector("main");
 
 // Création des nouveaux éléments du DOM
 
-let cart = document.createElement("section");
-let introCart = document.createElement("h2");
-let cartTeddy = document.createElement("div");
-let cartTeddyRecap = document.createElement("div");
-let cartTeddyQuantity = document.createElement("div");
-let cartTeddyQuantityTitle = document.createElement("h4");
-let cartTotalBox = document.createElement("div");
-let cartTotalTitle = document.createElement("h4");
+/* panier */
 
-let form = document.createElement("section");
-let introForm = document.createElement("h2");
-let firstName = document.createElement("div");
-let lastName = document.createElement("div");
-let address = document.createElement("div");
-let city = document.createElement("div");
-let email = document.createElement("div");
+let cartBox = document.createElement("section");
+cartBox.classList.add("cartBox");
+main.appendChild(cartBox);
 
-// Ajout d'attributs aux nouveaux éléments du DOM
+let cartTitle = document.createElement("h2");
+cartTitle.classList.add("cartTitle");
+cartBox.appendChild(cartTitle);
+cartTitle.textContent = "Votre panier";
 
-cart.classList.add("cart");
-introCart.classList.add("introCart");
-cartTeddy.classList.add("cartTeddy");
-cartTeddyRecap.classList.add("cartTeddyRecap");
-cartTeddyQuantity.classList.add("cartTeddyQuantity");
-cartTeddyQuantityTitle.classList.add("cartTeddyQuantityTitle", "title");
-cartTotalBox.classList.add("cartTotalBox");
+let cartSubtitlesBox = document.createElement("div");
+cartSubtitlesBox.classList.add("cartSubtitlesBox");
+cartBox.appendChild(cartSubtitlesBox);
+
+let cartSubtitleProduct = document.createElement("p");
+cartSubtitleProduct.classList.add("subtitleProduct");
+cartSubtitlesBox.appendChild(cartSubtitleProduct);
+cartSubtitleProduct.textContent = "Produit";
+
+let cartSubtitleQuantity = document.createElement("p");
+cartSubtitleQuantity.classList.add("subtitleQuantity");
+cartSubtitlesBox.appendChild(cartSubtitleQuantity);
+cartSubtitleQuantity.textContent = "Quantité";
+
+let cartSubtitlePrice = document.createElement("p");
+cartSubtitlePrice.classList.add("subtitlePrice");
+cartSubtitlesBox.appendChild(cartSubtitlePrice);
+cartSubtitlePrice.textContent = "Prix";
+
+/* formulaire */
+
+let formBox = document.createElement("section");
+formBox.classList.add("formBox");
+main.appendChild(formBox);
+
+let formTitle = document.createElement("h2");
+formTitle.classList.add("formTitle");
+formBox.appendChild(formTitle);
+formTitle.textContent = "Passer commande";
+
+// Récupération des données du localstorage
+
+let teddiesCart = Object.keys(localStorage);
+console.log(teddiesCart);
+
+// Affichage du panier
+
+for(let teddy in teddiesCart) {
+    teddy = JSON.parse(localStorage.getItem(teddiesCart[teddy]));
+
+    // création des nouveaux éléments du DOM
+
+    let cartRecapProduct = document.createElement("div");
+    cartRecapProduct.classList.add("cartRecapProduct");
+    cartBox.appendChild(cartRecapProduct);
+
+    let cartProductImage = document.createElement("img");
+    cartProductImage.classList.add("cartProductImage");
+    cartProductImage.setAttribute("src", teddy.image);
+    cartRecapProduct.appendChild(cartProductImage);
+
+    let cartProductName = document.createElement("p");
+    cartProductName.classList.add("cartProductName");
+    cartRecapProduct.appendChild(cartProductName);
+    cartProductName.textContent = teddy.name;
+
+    let cartProductColor = document.createElement("p");
+    cartProductColor.classList.add("cartProductColor");
+    cartRecapProduct.appendChild(cartProductColor);
+    cartProductColor.textContent = teddy.color;
+
+    let cartQuantityBloc = document.createElement("div");
+    cartQuantityBloc.classList.add("cartQuantityBloc");
+    cartRecapProduct.appendChild(cartQuantityBloc);
+
+    let cartQuantityChamp = document.createElement("button");
+    cartQuantityChamp.classList.add("cartQuantityChamp");
+    cartQuantityChamp.setAttribute("type", "number");
+    cartQuantityChamp.setAttribute("min", "1");
+    cartQuantityBloc.appendChild(cartQuantityChamp);
+    cartQuantityChamp.textContent = teddy.quantity;
+
+    let cartQuantityButtonBox = document.createElement("div");
+    cartQuantityButtonBox.classList.add("cartQuantityButtonBox");
+    cartQuantityBloc.appendChild(cartQuantityButtonBox);
+
+    let cartQuantityMore = document.createElement("button");
+    cartQuantityMore.classList.add("cartQuantityMore");
+    cartQuantityButtonBox.appendChild(cartQuantityMore);
+    cartQuantityMore.textContent = " + ";
+
+    let cartQuantityLess = document.createElement("button");
+    cartQuantityLess.classList.add("cartQuantityLess");
+    cartQuantityButtonBox.appendChild(cartQuantityLess);
+    cartQuantityLess.textContent = " - ";
+
+    let cartPrice = document.createElement("button");
+    cartPrice.classList.add("cartPrice");
+    cartPrice.setAttribute("type", "number");
+    cartRecapProduct.appendChild(cartPrice);
+    cartPrice.textContent = teddy.price;
+}
+
+let cartTotal = document.createElement("div");
+cartTotal.classList.add("cartTotal");
+cartBox.appendChild(cartTotal);
+
+let cartTotalTitle = document.createElement("p");
 cartTotalTitle.classList.add("cartTotalTitle");
-
-form.classList.add("form");
-introForm.classList.add("introForm");
-firstName.classList.add("firstName");
-lastName.classList.add("lastName");
-address.classList.add("address");
-city.classList.add("city");
-email.classList.add("email")
-
-// Intégration des nouveaux éléments au DOM
-
-main.appendChild(cart);
-cart.appendChild(introCart);
-cart.appendChild(cartTeddy);
-cartTeddy.appendChild(cartTeddyRecap);
-cartTeddy.appendChild(cartTeddyQuantity);
-cartTeddyQuantity.appendChild(cartTeddyQuantityTitle);
-cart.appendChild(cartTotalBox);
-cartTotalBox.appendChild(cartTotalTitle);
-
-main.appendChild(form);
-form.appendChild(introForm);
-form.appendChild(firstName);
-form.appendChild(lastName);
-form.appendChild(address);
-form.appendChild(city);
-form.appendChild(email);
-
-// Ajout de contenu
-
-introCart.textContent = "Votre panier";
-cartTeddyQuantityTitle.textContent = "Quantité";
+cartTotal.appendChild(cartTotalTitle);
 cartTotalTitle.textContent = "Total";
 
-introForm.textContent = "Passer votre commande";
-
-
-for(let article in teddyCart) {
-
-// Création des nouveaux éléments du DOM
-
-    let cartTeddyImage = document.createElement("img");
-    let cartTeddyName = document.createElement("p");
-    let cartTeddyColor = document.createElement("p");
-
-    let cartTeddyQuantityButton = document.createElement("input");
-    let cartTeddyPrice = document.createElement("input");
-    let cartTeddyTrash = document.createElement("button");
-
-    let cartTotal = document.createElement("input");
-
-
-    let firstNameLabel = document.createElement("label");
-    let firstNameInput = document.createElement("input");
-
-    let lastNameLabel = document.createElement("label");
-    let lastNameInput = document.createElement("input");
-
-    let addressLabel = document.createElement("label");
-    let addressInput = document.createElement("input");
-
-    let cityLabel = document.createElement("label");
-    let cityInput = document.createElement("input");
-
-    let emailLabel = document.createElement("label");
-    let emailInput = document.createElement("input");
-
-    let validation = document.createElement("button");
-
-
-// Ajout d'attributs aux nouveaux éléments du DOM
-
-
-    cartTeddyImage.classList.add("cartTeddyImage");
-    cartTeddyName.classList.add("cartTeddyName");
-    cartTeddyColor.classList.add("cartTeddyColor");
-
-    cartTeddyQuantityButton.classList.add("cartTeddyQuantityButton", "button");
-    cartTeddyQuantityButton.setAttribute("type", "number");
-    cartTeddyQuantityButton.setAttribute("min", "1");
-    cartTeddyPrice.classList.add("cartTeddyPrice");
-    cartTeddyTrash.classList.add("cartTeddyTrash");
-
-    cartTotal.classList.add("cartTotal");
-
-
-    firstNameLabel.classList.add("firstNameLabel");
-    firstNameInput.classList.add("firstNameInput");
-
-    lastNameLabel.classList.add("lastNameLabel");
-    lastNameInput.classList.add("lastNameInput");
-
-    addressLabel.classList.add("addressLabel");
-    addressInput.classList.add("addressInput");
-
-    cityLabel.classList.add("cityLabel");
-    cityInput.classList.add("cityInput");
-
-    emailLabel.classList.add("emailLabel");
-    emailInput.classList.add("emailInput");
-    validation.classList.add("validation");
-
-// Intégration des nouveaux éléments au DOM
-
-
-    cartTeddyRecap.appendChild(cartTeddyImage);
-    cartTeddyRecap.appendChild(cartTeddyName);
-    cartTeddyRecap.appendChild(cartTeddyColor);
-
-    cartTeddyQuantity.appendChild(cartTeddyQuantityButton);
-    cartTeddy.appendChild(cartTeddyPrice);
-    cartTeddy.appendChild(cartTeddyTrash);
-
-    cartTotalBox.appendChild(cartTotal);
-
-
-    firstName.appendChild(firstNameLabel);
-    firstName.appendChild(firstNameInput);
-    lastName.appendChild(lastNameLabel);
-    lastName.appendChild(lastNameInput);
-
-    address.appendChild(addressLabel);
-    address.appendChild(addressInput);
-
-    city.appendChild(cityLabel);
-    city.appendChild(cityInput);
-
-    email.appendChild(emailLabel);
-    email.appendChild(emailInput);
-    form.appendChild(validation);
-
-
-// Ajout de contenu
-
-
-    cartTeddyName = localStorage.getItem(name);
-
-    cartTeddyTrash.textContent = "Supprimer";
-
-    firstNameLabel.textContent = "Prénom";
-    lastNameLabel.textContent = "Nom";
-    addressLabel.textContent = "Adresse";
-    cityLabel.textContent = "Ville";
-    emailLabel.textContent = "Email";
-    validation.textContent = "Valider votre commande";
-}
+let cartTotalChamp = document.createElement("button");
+cartTotalChamp.classList.add("cartTotalChamp");
+cartTotalChamp.setAttribute("type", "number");
+cartTotal.appendChild(cartTotalChamp);
 
 
 

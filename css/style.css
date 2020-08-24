@@ -112,7 +112,7 @@ nav li span {
 /******************** MAIN ********************/
 
 main {
-    flex: 1;
+    /*flex: 1;*/
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -208,7 +208,6 @@ ul {
     display: flex;
     flex-direction: row;
     align-items: center;
-    /*border: solid black;*/
 }
 
 .teddyChoiceBox {
@@ -252,22 +251,37 @@ ul {
 
 /********** panier **********/
 
-.cartTeddy {
-    display: flex;
-}
-
-.cartTeddyQuantity {
+.cartBox {
+    width: 50%;
     display: flex;
     flex-direction: column;
 }
 
-.cartTotalBox {
+.cartSubtitlesBox {
     display: flex;
 }
 
-.form {
-    border: solid blue;
+.cartRecapProduct {
+    display: flex;
 }
+
+.cartProductImage {
+    width: 20%;
+}
+
+.cartQuantityBloc {
+    display: flex;
+}
+
+.cartQuantityButtonBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.cartTotal {
+    display: flex;
+}
+
 /******************** FOOTER ********************/
 
 footer {

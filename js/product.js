@@ -122,7 +122,7 @@ function displayCard(teddy) {
         let teddyFeatures = {
             name: teddy.name,
             image: teddy.imageUrl,
-            price: (teddy.price / 100).toFixed(2),
+            price: (teddy.price / 100).toFixed(2) + " €",
             quantity: teddyQuantityButton.value,
             color: teddyColorButton.value
         }

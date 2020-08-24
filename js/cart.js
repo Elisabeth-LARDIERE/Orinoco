@@ -34,6 +34,20 @@ cartSubtitlePrice.classList.add("subtitlePrice");
 cartSubtitlesBox.appendChild(cartSubtitlePrice);
 cartSubtitlePrice.textContent = "Prix";
 
+let cartTotal = document.createElement("div");
+cartTotal.classList.add("cartTotal");
+cartBox.appendChild(cartTotal);
+
+let cartTotalTitle = document.createElement("p");
+cartTotalTitle.classList.add("cartTotalTitle");
+cartTotal.appendChild(cartTotalTitle);
+cartTotalTitle.textContent = "Total";
+
+let cartTotalChamp = document.createElement("button");
+cartTotalChamp.classList.add("cartTotalChamp");
+cartTotalChamp.setAttribute("type", "number");
+cartTotal.appendChild(cartTotalChamp);
+
 /* formulaire */
 
 let formBox = document.createElement("section");
@@ -113,21 +127,20 @@ for(let teddy in teddiesCart) {
     cartPriceChamp.classList.add("cartPriceChamp");
     cartPriceChamp.setAttribute("type", "number");
     cartPriceBloc.appendChild(cartPriceChamp);
+    cartPriceChamp.textContent = teddy.price;
+
+    function increaseQuantity() {
+        cartQuantityChamp.textContent++;
+    }
+    cartQuantityMore.addEventListener("click", increaseQuantity);
+
+    function decreaseQuantity() {
+        cartQuantityChamp.textContent--;
+    }
+    cartQuantityLess.addEventListener("click", decreaseQuantity);
 }
 
-let cartTotal = document.createElement("div");
-cartTotal.classList.add("cartTotal");
-cartBox.appendChild(cartTotal);
 
-let cartTotalTitle = document.createElement("p");
-cartTotalTitle.classList.add("cartTotalTitle");
-cartTotal.appendChild(cartTotalTitle);
-cartTotalTitle.textContent = "Total";
-
-let cartTotalChamp = document.createElement("button");
-cartTotalChamp.classList.add("cartTotalChamp");
-cartTotalChamp.setAttribute("type", "number");
-cartTotal.appendChild(cartTotalChamp);
 
 
 

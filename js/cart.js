@@ -15,25 +15,6 @@ cartTitle.classList.add("cartTitle");
 cartBox.appendChild(cartTitle);
 cartTitle.textContent = "Votre panier";
 
-let cartSubtitlesBox = document.createElement("div");
-cartSubtitlesBox.classList.add("cartSubtitlesBox");
-cartBox.appendChild(cartSubtitlesBox);
-
-let cartSubtitleProduct = document.createElement("p");
-cartSubtitleProduct.classList.add("subtitleProduct");
-cartSubtitlesBox.appendChild(cartSubtitleProduct);
-cartSubtitleProduct.textContent = "Produit";
-
-let cartSubtitleQuantity = document.createElement("p");
-cartSubtitleQuantity.classList.add("subtitleQuantity");
-cartSubtitlesBox.appendChild(cartSubtitleQuantity);
-cartSubtitleQuantity.textContent = "Quantité";
-
-let cartSubtitlePrice = document.createElement("p");
-cartSubtitlePrice.classList.add("subtitlePrice");
-cartSubtitlesBox.appendChild(cartSubtitlePrice);
-cartSubtitlePrice.textContent = "Prix";
-
 let cartTotal = document.createElement("div");
 cartTotal.classList.add("cartTotal");
 cartBox.appendChild(cartTotal);
@@ -71,63 +52,55 @@ for(let teddy in teddiesCart) {
 
     // création des nouveaux éléments du DOM
 
-    let cartRecapProduct = document.createElement("div");
-    cartRecapProduct.classList.add("cartRecapProduct");
-    cartBox.appendChild(cartRecapProduct);
+    let cartRecap = document.createElement("div");
+    cartRecap.classList.add("cartRecap");
+    cartBox.appendChild(cartRecap);
 
-    let cartProductView = document.createElement("div");
-    cartProductView.classList.add("cartProductView");
-    cartRecapProduct.appendChild(cartProductView);
+    let cartProductBox = document.createElement("div");
+    cartProductBox.classList.add("cartProductBox");
+    cartRecap.appendChild(cartProductBox);
 
     let cartProductImage = document.createElement("img");
     cartProductImage.classList.add("cartProductImage");
     cartProductImage.setAttribute("src", teddy.image);
-    cartProductView.appendChild(cartProductImage);
+    cartProductBox.appendChild(cartProductImage);
 
     let cartProductName = document.createElement("p");
     cartProductName.classList.add("cartProductName");
-    cartProductView.appendChild(cartProductName);
+    cartProductBox.appendChild(cartProductName);
     cartProductName.textContent = teddy.name + " - ";
 
     let cartProductColor = document.createElement("p");
     cartProductColor.classList.add("cartProductColor");
-    cartProductView.appendChild(cartProductColor);
+    cartProductBox.appendChild(cartProductColor);
     cartProductColor.textContent = teddy.color;
 
-    let cartQuantityBloc = document.createElement("div");
-    cartQuantityBloc.classList.add("cartQuantityBloc");
-    cartRecapProduct.appendChild(cartQuantityBloc);
+    let cartQuantityBox = document.createElement("div");
+    cartQuantityBox.classList.add("cartQuantityBox");
+    cartRecap.appendChild(cartQuantityBox);
+
+    let cartQuantityMore = document.createElement("button");
+    cartQuantityMore.classList.add("cartQuantityMore");
+    cartQuantityBox.appendChild(cartQuantityMore);
+    cartQuantityMore.textContent = " + ";
 
     let cartQuantityChamp = document.createElement("button");
     cartQuantityChamp.classList.add("cartQuantityChamp");
     cartQuantityChamp.setAttribute("type", "number");
     cartQuantityChamp.setAttribute("min", "1");
-    cartQuantityBloc.appendChild(cartQuantityChamp);
+    cartQuantityBox.appendChild(cartQuantityChamp);
     cartQuantityChamp.textContent = teddy.quantity;
-
-    let cartQuantityButtonBox = document.createElement("div");
-    cartQuantityButtonBox.classList.add("cartQuantityButtonBox");
-    cartQuantityBloc.appendChild(cartQuantityButtonBox);
-
-    let cartQuantityMore = document.createElement("button");
-    cartQuantityMore.classList.add("cartQuantityMore");
-    cartQuantityButtonBox.appendChild(cartQuantityMore);
-    cartQuantityMore.textContent = " + ";
 
     let cartQuantityLess = document.createElement("button");
     cartQuantityLess.classList.add("cartQuantityLess");
-    cartQuantityButtonBox.appendChild(cartQuantityLess);
+    cartQuantityBox.appendChild(cartQuantityLess);
     cartQuantityLess.textContent = " - ";
 
-    let cartPriceBloc = document.createElement("div");
-    cartPriceBloc.classList.add("cartPriceBloc");
-    cartRecapProduct.appendChild(cartPriceBloc);
-
-    let cartPriceChamp = document.createElement("button");
-    cartPriceChamp.classList.add("cartPriceChamp");
-    cartPriceChamp.setAttribute("type", "number");
-    cartPriceBloc.appendChild(cartPriceChamp);
-    cartPriceChamp.textContent = teddy.price;
+    let cartPriceBox = document.createElement("button");
+    cartPriceBox.classList.add("cartPriceBox");
+    cartPriceBox.setAttribute("type", "number");
+    cartRecap.appendChild(cartPriceBox);
+    cartPriceBox.textContent = teddy.price;
 
     function increaseQuantity() {
         cartQuantityChamp.textContent++;

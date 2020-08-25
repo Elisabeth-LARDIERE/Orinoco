@@ -121,7 +121,6 @@ for(let teddy in teddiesCart) {
     }
 
     cartQuantityLess.addEventListener("click", decreaseQuantity);
-
 }
 
 

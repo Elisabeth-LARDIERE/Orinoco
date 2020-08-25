@@ -79,10 +79,10 @@ for(let teddy in teddiesCart) {
     cartQuantityBox.classList.add("cartQuantityBox");
     cartRecap.appendChild(cartQuantityBox);
 
-    let cartQuantityMore = document.createElement("button");
-    cartQuantityMore.classList.add("cartQuantityMore");
-    cartQuantityBox.appendChild(cartQuantityMore);
-    cartQuantityMore.textContent = " + ";
+    let cartQuantityLess = document.createElement("button");
+    cartQuantityLess.classList.add("cartQuantityLess");
+    cartQuantityBox.appendChild(cartQuantityLess);
+    cartQuantityLess.textContent = " - ";
 
     let cartQuantityChamp = document.createElement("button");
     cartQuantityChamp.classList.add("cartQuantityChamp");
@@ -91,28 +91,38 @@ for(let teddy in teddiesCart) {
     cartQuantityBox.appendChild(cartQuantityChamp);
     cartQuantityChamp.textContent = teddy.quantity;
 
-    let cartQuantityLess = document.createElement("button");
-    cartQuantityLess.classList.add("cartQuantityLess");
-    cartQuantityBox.appendChild(cartQuantityLess);
-    cartQuantityLess.textContent = " - ";
+    let cartQuantityMore = document.createElement("button");
+    cartQuantityMore.classList.add("cartQuantityMore");
+    cartQuantityBox.appendChild(cartQuantityMore);
+    cartQuantityMore.textContent = " + ";
 
     let cartPriceBox = document.createElement("button");
     cartPriceBox.classList.add("cartPriceBox");
     cartPriceBox.setAttribute("type", "number");
     cartRecap.appendChild(cartPriceBox);
-    cartPriceBox.textContent = teddy.price;
+
+    let recapPrice = parseInt(teddy.price) * teddy.quantity;
+    cartPriceBox.textContent = String((recapPrice).toFixed(2)) + " € ";
 
     function increaseQuantity() {
-        cartQuantityChamp.textContent++;
+        let newQuantityMore = cartQuantityChamp.textContent++;
+        let newPriceMore = (parseInt(teddy.price) * (newQuantityMore+1));
+        cartPriceBox.textContent = String((newPriceMore).toFixed(2)) + " € ";
+        console.log(newPriceMore);
     }
+
     cartQuantityMore.addEventListener("click", increaseQuantity);
 
     function decreaseQuantity() {
-        cartQuantityChamp.textContent--;
+        let newQuantityLess = cartQuantityChamp.textContent--;
+        let newPriceLess = (parseInt(teddy.price) * (newQuantityLess-1));
+        cartPriceBox.textContent = String((newPriceLess).toFixed(2)) + " € ";
+        console.log(newPriceLess);
     }
-    cartQuantityLess.addEventListener("click", decreaseQuantity);
-}
 
+    cartQuantityLess.addEventListener("click", decreaseQuantity);
+
+}
 
 
 

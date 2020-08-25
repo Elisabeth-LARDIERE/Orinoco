@@ -59,6 +59,7 @@ function displayCard(teddy) {
         teddyDescription.classList.add("teddyDescription");
         teddyText.classList.add("teddyText");
         teddyPriceCard.classList.add("teddyPriceCard");
+        teddyPriceCard.setAttribute("type", "number");
 
         teddyOrderBox.classList.add("teddyOrderBox"); /* section options et ajout au panier */
         teddyChoiceBox.classList.add("teddyChoiceBox");

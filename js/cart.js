@@ -178,24 +178,30 @@ for(let teddy in teddiesCart) {
     cartPriceBox.textContent = String((recapPrice).toFixed(2)) + " € ";
 
     function increaseQuantity() {
-        let newQuantityMore = cartQuantityChamp.textContent++;
-        let newPriceMore = (parseInt(teddy.price) * (newQuantityMore+1));
-        cartPriceBox.textContent = String((newPriceMore).toFixed(2)) + " € ";
-        console.log(newPriceMore);
+        cartQuantityChamp.textContent++;
     }
 
     cartQuantityMore.addEventListener("click", increaseQuantity);
 
     function decreaseQuantity() {
-        let newQuantityLess = cartQuantityChamp.textContent--;
-        let newPriceLess = (parseInt(teddy.price) * (newQuantityLess-1));
-        cartPriceBox.textContent = String((newPriceLess).toFixed(2)) + " € ";
-        console.log(newPriceLess);
+        if(cartQuantityChamp.textContent <=1) {
+            cartQuantityChamp.textContent = "1";
+        } else {
+            cartQuantityChamp.textContent--;
+        }
     }
     cartQuantityLess.addEventListener("click", decreaseQuantity);
 }
 
+/*let newQuantityLess
+let newPriceLess = (parseInt(teddy.price) * (newQuantityLess-1));
+cartPriceBox.textContent = String((newPriceLess).toFixed(2)) + " € ";
+console.log(newPriceLess);
 
+let newQuantityMore
+let newPriceMore = (parseInt(teddy.price) * (newQuantityMore+1));
+cartPriceBox.textContent = String((newPriceMore).toFixed(2)) + " € ";
+console.log(newPriceMore);*/
 
 
 

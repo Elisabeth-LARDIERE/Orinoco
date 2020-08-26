@@ -73,6 +73,7 @@ function displayCard(teddy) {
         teddyQuantityButton.classList.add("teddyQuantityButton", "button");
         teddyQuantityButton.setAttribute("type", "number");
         teddyQuantityButton.setAttribute("min", "1");
+        teddyQuantityButton.setAttribute("value", "1");
 
         teddyOrderButton.classList.add("teddyOrderButton");
 

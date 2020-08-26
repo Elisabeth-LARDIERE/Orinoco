@@ -234,6 +234,7 @@ ul {
 .main_cart {
     display: flex;
     flex-direction: row;
+    justify-content: normal;
 }
 
 /********** panier **********/
@@ -242,10 +243,11 @@ ul {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.cartBox {
+.cartBloc {
     width: 50%;
     display: flex;
     flex-direction: column;
+    margin-left: 15px;
 }
 
 .cartRecap {
@@ -311,6 +313,52 @@ ul {
     display: flex;
     order: 1;
     justify-content: flex-end;
+    font-family: "Josefin Sans", serif;
+    margin-top: 10px;
+}
+
+.cartTotalChamp {
+    width: 15%;
+    margin-left: 15px;
+    margin-right: 10px;
+}
+
+/********** formulaire **********/
+
+.formBloc {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-left: 50px;
+    margin-right: 15px;
+}
+
+.formContact {
+    display: flex;
+    flex-direction: column;
+    font-family: "Marck Script", serif;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    margin-top: 5px;
+    margin-bottom: 50px;
+}
+
+.formBox {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+
+}
+
+.formChamp {
+    width: 70%;
+    margin-left: 10px;
+    font-family: "Josefin Sans", serif;
+}
+
+.orderValidation {
+    width: 50%;
+    align-self: center;
+    padding: 10px;
     font-family: "Josefin Sans", serif;
 }
 

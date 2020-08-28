@@ -51,10 +51,12 @@ formContact.appendChild(formFirstNameBox);
 let formFirstNameLabel = document.createElement("label");
 formFirstNameLabel.classList.add("formFirstName");
 formFirstNameBox.appendChild(formFirstNameLabel);
+formFirstNameLabel.setAttribute("for", "firstName");
 formFirstNameLabel.textContent = "Prénom";
 
 let formFirstNameChamp = document.createElement("input");
 formFirstNameChamp.classList.add("formFirstNameChamp", "formChamp");
+formFirstNameChamp.setAttribute("id", "firstName");
 formFirstNameBox.appendChild(formFirstNameChamp);
 
 let formLastNameBox = document.createElement("div");
@@ -64,10 +66,12 @@ formContact.appendChild(formLastNameBox);
 let formLastNameLabel = document.createElement("label");
 formLastNameLabel.classList.add("formLastNameLabel");
 formLastNameBox.appendChild(formLastNameLabel);
+formLastNameLabel.setAttribute("for", "lastName");
 formLastNameLabel.textContent = "Nom";
 
 let formLastNameChamp = document.createElement("input");
 formLastNameChamp.classList.add("formLastNameChamp", "formChamp");
+formLastNameChamp.setAttribute("id", "lastName");
 formLastNameBox.appendChild(formLastNameChamp);
 
 let formAddressBox = document.createElement("div");
@@ -77,10 +81,12 @@ formContact.appendChild(formAddressBox);
 let formAddressLabel = document.createElement("label");
 formAddressLabel.classList.add("formAddressLabel");
 formAddressBox.appendChild(formAddressLabel);
+formAddressBox.setAttribute("for", "address");
 formAddressLabel.textContent = "Adresse";
 
 let formAddressChamp = document.createElement("input");
 formAddressChamp.classList.add("formAddressChamp", "formChamp");
+formAddressChamp.setAttribute("id", "address");
 formAddressBox.appendChild(formAddressChamp);
 
 let formCityBox = document.createElement("div");
@@ -89,11 +95,13 @@ formContact.appendChild(formCityBox);
 
 let formCityLabel = document.createElement("label");
 formCityLabel.classList.add("formCityLabel");
+formCityLabel.setAttribute("for", "city");
 formCityBox.appendChild(formCityLabel);
 formCityLabel.textContent = "Ville";
 
 let formCityChamp = document.createElement("input");
 formCityChamp.classList.add("formCityChamp", "formChamp");
+formCityChamp.setAttribute("id", "city");
 formCityBox.appendChild(formCityChamp);
 
 let formEmailBox = document.createElement("div");
@@ -102,11 +110,13 @@ formContact.appendChild(formEmailBox);
 
 let formEmailLabel = document.createElement("label");
 formEmailLabel.classList.add("formEmailLabel");
+formEmailBox.setAttribute("for", "email");
 formEmailBox.appendChild(formEmailLabel);
 formEmailLabel.textContent = "Email";
 
 let formEmailChamp = document.createElement("input");
 formEmailChamp.classList.add("formEmailChamp", "formChamp");
+formEmailChamp.setAttribute("id", "email");
 formEmailBox.appendChild(formEmailChamp);
 
 let orderValidation = document.createElement("button");
@@ -119,6 +129,7 @@ orderValidation.textContent = "Valider votre commande";
 let teddiesCartId = Object.keys(localStorage);
 console.log(teddiesCartId);
 let total = 0;
+
 
 // Affichage du panier
 
@@ -217,8 +228,25 @@ for (let i in teddiesCartId) {
     }
 
     cartQuantityLess.addEventListener("click", decreaseQuantity);
-
 }
+
+// Formulaire
+
+function addContact() {
+    let contact = {
+        firstName: formFirstNameChamp.value,
+        lastName: formLastNameChamp.value,
+        address: formAddressChamp.value,
+        city: formCityChamp.value,
+        email: formEmailChamp.value
+    }
+
+    console.log("boubou");
+    let contact_json = JSON.stringify(contact);
+    localStorage.setItem("contact", contact_json);
+}
+
+orderValidation.addEventListener("click", addContact);
 
 
 

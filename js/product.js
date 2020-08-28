@@ -42,6 +42,7 @@ let teddyQuantity = document.createElement("div");
 let teddyQuantityTitle = document.createElement("label");
 let teddyQuantityButton = document.createElement("input");
 let teddyOrderButton = document.createElement("button");
+let teddyOrderButtonLogo = document.createElement("i");
 
 // Affichage de l'ourson sélectionné et des options : couleurs / quantité / ajout au panier
 
@@ -76,6 +77,7 @@ function displayCard(teddy) {
         teddyQuantityButton.setAttribute("value", "1");
 
         teddyOrderButton.classList.add("teddyOrderButton");
+        teddyOrderButtonLogo.classList.add("fas", "fa-shopping-cart");
 
         // intégration des nouveaux éléments au DOM
 
@@ -96,6 +98,7 @@ function displayCard(teddy) {
         teddyQuantity.appendChild(teddyQuantityTitle);
         teddyQuantity.appendChild(teddyQuantityButton);
         teddyOrderBox.appendChild(teddyOrderButton);
+        teddyOrderButton.appendChild(teddyOrderButtonLogo);
 
         // ajout de contenu
 
@@ -106,36 +109,36 @@ function displayCard(teddy) {
         teddyColorTitle.textContent = "Couleur"; /* section options et ajout au panier */
         teddyQuantityTitle.textContent = "Quantité";
 
-    }
 
-    // choix de la couleur
+        // choix de la couleur
 
-    for (let color of teddy.colors) {
-        let teddyColorButtonOptions = document.createElement("option");
-        teddyColorButtonOptions.classList.add("teddyColorButtonOptions");
-        teddyColorButtonOptions.setAttribute("value", color);
-        teddyColorButton.appendChild(teddyColorButtonOptions);
-        teddyColorButtonOptions.textContent = color;
-    }
-
-    // stockage des données dans le localstorage
-
-    function addToCart() {
-        let teddyFeatures = {
-            name: teddy.name,
-            image: teddy.imageUrl,
-            price: (teddy.price / 100).toFixed(2) + " €",
-            quantity: teddyQuantityButton.value,
-            color: teddyColorButton.value
+        for (let color of teddy.colors) {
+            let teddyColorButtonOptions = document.createElement("option");
+            teddyColorButtonOptions.classList.add("teddyColorButtonOptions");
+            teddyColorButtonOptions.setAttribute("value", color);
+            teddyColorButton.appendChild(teddyColorButtonOptions);
+            teddyColorButtonOptions.textContent = color;
         }
-        
-        let teddyFeatures_json = JSON.stringify(teddyFeatures);
-        localStorage.setItem(idTeddy, teddyFeatures_json);
+
+        // stockage des données dans le localstorage
+
+        function addToCart() {
+            let teddyFeatures = {
+                name: teddy.name,
+                image: teddy.imageUrl,
+                price: (teddy.price / 100).toFixed(2) + " €",
+                quantity: teddyQuantityButton.value,
+                color: teddyColorButton.value
+            }
+
+            let teddyFeatures_json = JSON.stringify(teddyFeatures);
+            localStorage.setItem(idTeddy, teddyFeatures_json);
+        }
+
+        teddyOrderButton.addEventListener("click", addToCart);
+
     }
-
-    teddyOrderButton.addEventListener("click", addToCart);
 }
-
 
 
 

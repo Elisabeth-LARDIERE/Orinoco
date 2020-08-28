@@ -92,10 +92,6 @@ nav li {
     padding-right: 10px;
 }
 
-nav li span {
-    padding-left: 5px;
-}
-
 /******************** MAIN ********************/
 
 main {
@@ -227,7 +223,6 @@ ul {
 
 .teddyOrderButton {
     width: 20%;
-    height: 40px;
     font-family: "Marck Script", serif;
 }
 

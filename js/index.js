@@ -39,7 +39,7 @@ function displayTeddies(teddies) {
 
         // ajout d'attributs aux nouveaux éléments du DOM
 
-        introList.setAttribute("id", "introList");
+        introList.classList.add("introList");
         teddiesList.classList.add("teddiesList");
         teddyBox.classList.add("teddyBox");
         teddyName.classList.add("teddyName");

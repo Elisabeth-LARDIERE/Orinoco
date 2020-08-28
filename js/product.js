@@ -1,6 +1,6 @@
 // Récupération des oursons individuels auprès de l'API
 
-let idTeddy = location.search.slice(1);
+let idTeddy = location.search.slice(1); // essayer avec URLSearchParams
 console.log(idTeddy);
 
 fetch("http://localhost:3000/api/teddies/" + idTeddy)
@@ -42,6 +42,7 @@ let teddyQuantity = document.createElement("div");
 let teddyQuantityTitle = document.createElement("label");
 let teddyQuantityButton = document.createElement("input");
 let teddyOrderButton = document.createElement("button");
+let teddyOrderButtonLogo = document.createElement("i");
 
 // Affichage de l'ourson sélectionné et des options : couleurs / quantité / ajout au panier
 
@@ -59,7 +60,6 @@ function displayCard(teddy) {
         teddyDescription.classList.add("teddyDescription");
         teddyText.classList.add("teddyText");
         teddyPriceCard.classList.add("teddyPriceCard");
-        teddyPriceCard.setAttribute("type", "number");
 
         teddyOrderBox.classList.add("teddyOrderBox"); /* section options et ajout au panier */
         teddyChoiceBox.classList.add("teddyChoiceBox");
@@ -76,6 +76,7 @@ function displayCard(teddy) {
         teddyQuantityButton.setAttribute("value", "1");
 
         teddyOrderButton.classList.add("teddyOrderButton");
+        teddyOrderButtonLogo.classList.add("fas", "fa-shopping-cart");
 
         // intégration des nouveaux éléments au DOM
 
@@ -96,6 +97,7 @@ function displayCard(teddy) {
         teddyQuantity.appendChild(teddyQuantityTitle);
         teddyQuantity.appendChild(teddyQuantityButton);
         teddyOrderBox.appendChild(teddyOrderButton);
+        teddyOrderButton.appendChild(teddyOrderButtonLogo);
 
         // ajout de contenu
 
@@ -105,7 +107,6 @@ function displayCard(teddy) {
 
         teddyColorTitle.textContent = "Couleur"; /* section options et ajout au panier */
         teddyQuantityTitle.textContent = "Quantité";
-
     }
 
     // choix de la couleur
@@ -128,14 +129,14 @@ function displayCard(teddy) {
             quantity: teddyQuantityButton.value,
             color: teddyColorButton.value
         }
-        
+
         let teddyFeatures_json = JSON.stringify(teddyFeatures);
         localStorage.setItem(idTeddy, teddyFeatures_json);
     }
 
     teddyOrderButton.addEventListener("click", addToCart);
-}
 
+}
 
 
 

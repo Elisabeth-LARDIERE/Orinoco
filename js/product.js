@@ -128,6 +128,7 @@ function displayCard(teddy) {
             quantity: teddyQuantityButton.value,
             color: teddyColorButton.value
         }
+        
         let teddyFeatures_json = JSON.stringify(teddyFeatures);
         localStorage.setItem(idTeddy, teddyFeatures_json);
     }

@@ -116,13 +116,15 @@ orderValidation.textContent = "Valider votre commande";
 
 // Récupération des données du localstorage
 
-let teddiesCart = Object.keys(localStorage);
-console.log(teddiesCart);
+let teddiesCartId = Object.keys(localStorage);
+console.log(teddiesCartId);
+let total = 0;
 
 // Affichage du panier
 
-for(let teddy in teddiesCart) {
-    teddy = JSON.parse(localStorage.getItem(teddiesCart[teddy]));
+for (let i in teddiesCartId) {
+    let teddy = JSON.parse(localStorage.getItem(teddiesCartId[i]));
+    console.log(teddiesCartId[i]);
 
     // création des nouveaux éléments du DOM
 
@@ -174,37 +176,49 @@ for(let teddy in teddiesCart) {
     cartPriceBox.classList.add("cartPriceBox");
     cartPriceBox.setAttribute("type", "number");
     cartRecap.appendChild(cartPriceBox);
+
+    // affichage du prix pour chaque ligne d'articles
+
     let recapPrice = parseInt(teddy.price) * teddy.quantity;
     cartPriceBox.textContent = String((recapPrice).toFixed(2)) + " € ";
 
+    // affichage du total
+
+    total += recapPrice;
+    cartTotalChamp.textContent = total.toFixed(2) + " € ";
+
+    // affichage et stockage des nouvelles données si augmentation ou diminution de la quantité
+
     function increaseQuantity() {
         cartQuantityChamp.textContent++;
+        teddy.quantity++;
+        localStorage.setItem(teddiesCartId[i], JSON.stringify(teddy));
+        recapPrice = parseInt(teddy.price) * teddy.quantity;
+        cartPriceBox.textContent = String((recapPrice).toFixed(2)) + " € ";
+        total += parseInt(teddy.price);
+        cartTotalChamp.textContent = total.toFixed(2) + " € ";
+
     }
 
     cartQuantityMore.addEventListener("click", increaseQuantity);
 
     function decreaseQuantity() {
-        if(cartQuantityChamp.textContent <=1) {
+        if (cartQuantityChamp.textContent <= 1) {
             cartQuantityChamp.textContent = "1";
         } else {
             cartQuantityChamp.textContent--;
+            teddy.quantity--;
+            localStorage.setItem(teddiesCartId[i], JSON.stringify(teddy));
+            recapPrice = parseInt(teddy.price) * teddy.quantity;
+            cartPriceBox.textContent = String((recapPrice).toFixed(2)) + " € ";
+            total -= parseInt(teddy.price);
+            cartTotalChamp.textContent = total.toFixed(2) + " € ";
         }
     }
+
     cartQuantityLess.addEventListener("click", decreaseQuantity);
+
 }
-
-/*let newQuantityLess
-let newPriceLess = (parseInt(teddy.price) * (newQuantityLess-1));
-cartPriceBox.textContent = String((newPriceLess).toFixed(2)) + " € ";
-console.log(newPriceLess);
-
-let newQuantityMore
-let newPriceMore = (parseInt(teddy.price) * (newQuantityMore+1));
-cartPriceBox.textContent = String((newPriceMore).toFixed(2)) + " € ";
-console.log(newPriceMore);*/
-
-
-
 
 
 

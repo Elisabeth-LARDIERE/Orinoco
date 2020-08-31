@@ -1,6 +1,6 @@
 // Récupération des oursons individuels auprès de l'API
 
-let idTeddy = location.search.slice(1); // essayer avec URLSearchParams
+let idTeddy = location.search.slice(1);
 console.log(idTeddy);
 
 fetch("http://localhost:3000/api/teddies/" + idTeddy)
@@ -60,6 +60,7 @@ function displayCard(teddy) {
         teddyDescription.classList.add("teddyDescription");
         teddyText.classList.add("teddyText");
         teddyPriceCard.classList.add("teddyPriceCard");
+        teddyPriceCard.setAttribute("type", "number");
 
         teddyOrderBox.classList.add("teddyOrderBox"); /* section options et ajout au panier */
         teddyChoiceBox.classList.add("teddyChoiceBox");
@@ -107,8 +108,8 @@ function displayCard(teddy) {
 
         teddyColorTitle.textContent = "Couleur"; /* section options et ajout au panier */
         teddyQuantityTitle.textContent = "Quantité";
-    }
 
+    }
     // choix de la couleur
 
     for (let color of teddy.colors) {

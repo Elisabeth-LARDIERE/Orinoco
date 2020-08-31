@@ -345,13 +345,26 @@ ul {
     display: flex;
     justify-content: space-between;
     margin: 10px;
-
 }
 
-.formChamp {
-    width: 70%;
+.formLabel {
+    width: 30%;
+}
+
+.formChampBox {
+    display: flex;
+    flex-direction: column;
     margin-left: 10px;
+    width: 70%;
+}
+
+.formChampInput {
     font-family: "Josefin Sans", serif;
+}
+
+.formChampAlert {
+    font-size: 0.7em;
+    color: blue;
 }
 
 .orderValidation {

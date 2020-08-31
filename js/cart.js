@@ -26,6 +26,7 @@ cartTotalTitle.textContent = "Total";
 
 let cartTotalChamp = document.createElement("button");
 cartTotalChamp.classList.add("cartTotalChamp");
+cartTotalChamp.setAttribute("type", "number");
 cartTotal.appendChild(cartTotalChamp);
 
 /* formulaire */
@@ -48,87 +49,128 @@ formFirstNameBox.classList.add("formFirstNameBox", "formBox");
 formContact.appendChild(formFirstNameBox);
 
 let formFirstNameLabel = document.createElement("label");
-formFirstNameLabel.classList.add("formFirstName");
+formFirstNameLabel.classList.add("formFirstName", "formLabel");
 formFirstNameBox.appendChild(formFirstNameLabel);
 formFirstNameLabel.setAttribute("for", "firstName");
 formFirstNameLabel.textContent = "Prénom";
 
-let formFirstNameChamp = document.createElement("input");
-formFirstNameChamp.classList.add("formFirstNameChamp", "formChamp");
-formFirstNameChamp.setAttribute("id", "firstName");
-formFirstNameChamp.setAttribute("required", "required");
-formFirstNameBox.appendChild(formFirstNameChamp);
+let formFirstNameChampBox = document.createElement("div");
+formFirstNameChampBox.classList.add("formFirstNameChampBox", "formChampBox");
+formFirstNameBox.appendChild(formFirstNameChampBox);
+
+let formFirstNameChampInput = document.createElement("input");
+formFirstNameChampInput.classList.add("formFirstNameChampInput", "formChampInput");
+formFirstNameChampInput.setAttribute("id", "firstName");
+formFirstNameChampInput.setAttribute("type", "text");
+formFirstNameChampInput.setAttribute("required", "");
+formFirstNameChampBox.appendChild(formFirstNameChampInput);
+
+let formFirstNameChampAlert = document.createElement("p");
+formFirstNameChampAlert.classList.add("formFirstNameChampAlert", "formChampAlert");
+formFirstNameChampBox.appendChild(formFirstNameChampAlert);
 
 let formLastNameBox = document.createElement("div");
 formLastNameBox.classList.add("formLastNameBox", "formBox");
 formContact.appendChild(formLastNameBox);
 
 let formLastNameLabel = document.createElement("label");
-formLastNameLabel.classList.add("formLastNameLabel");
+formLastNameLabel.classList.add("formLastNameLabel", "formLabel");
 formLastNameBox.appendChild(formLastNameLabel);
 formLastNameLabel.setAttribute("for", "lastName");
 formLastNameLabel.textContent = "Nom";
 
-let formLastNameChamp = document.createElement("input");
-formLastNameChamp.classList.add("formLastNameChamp", "formChamp");
-formLastNameChamp.setAttribute("id", "lastName");
-formLastNameChamp.setAttribute("required", "required");
-formLastNameBox.appendChild(formLastNameChamp);
+let formLastNameChampBox = document.createElement("div");
+formLastNameChampBox.classList.add("formLastNameChampBox", "formChampBox");
+formLastNameBox.appendChild(formLastNameChampBox);
+
+let formLastNameChampInput = document.createElement("input");
+formLastNameChampInput.classList.add("formLastNameChampInput", "formChampInput");
+formLastNameChampInput.setAttribute("id", "lastName");
+formLastNameChampInput.setAttribute("type", "text");
+formLastNameChampInput.setAttribute("required", "");
+formLastNameChampBox.appendChild(formLastNameChampInput);
+
+let formLastNameChampAlert = document.createElement("p");
+formLastNameChampAlert.classList.add("formLastNameChampAlert", "formChampAlert");
+formLastNameChampBox.appendChild(formLastNameChampAlert);
 
 let formAddressBox = document.createElement("div");
 formAddressBox.classList.add("formAddressBox", "formBox");
 formContact.appendChild(formAddressBox);
 
 let formAddressLabel = document.createElement("label");
-formAddressLabel.classList.add("formAddressLabel");
-formAddressBox.appendChild(formAddressLabel);
+formAddressLabel.classList.add("formAddressLabel", "formLabel");
 formAddressBox.setAttribute("for", "address");
+formAddressBox.appendChild(formAddressLabel);
 formAddressLabel.textContent = "Adresse";
 
-let formAddressChamp = document.createElement("input");
-formAddressChamp.classList.add("formAddressChamp", "formChamp");
-formAddressChamp.setAttribute("id", "address");
-formAddressChamp.setAttribute("required", "required");
-formAddressBox.appendChild(formAddressChamp);
+let formAddressChampBox = document.createElement("div");
+formAddressChampBox.classList.add("formAddressChampBox", "formChampBox");
+formAddressBox.appendChild(formAddressChampBox);
+
+let formAddressChampInput = document.createElement("input");
+formAddressChampInput.classList.add("formAddressChampInput", "formChampInput");
+formAddressChampInput.setAttribute("id", "address");
+formAddressChampInput.setAttribute("required", "");
+formAddressChampBox.appendChild(formAddressChampInput);
+
+let formAddressChampAlert = document.createElement("p");
+formAddressChampAlert.classList.add("formAddressChampAlert", "formChampAlert");
+formAddressChampBox.appendChild(formAddressChampAlert);
 
 let formCityBox = document.createElement("div");
 formCityBox.classList.add("formCityBox", "formBox");
 formContact.appendChild(formCityBox);
 
 let formCityLabel = document.createElement("label");
-formCityLabel.classList.add("formCityLabel");
+formCityLabel.classList.add("formCityLabel", "formLabel");
 formCityLabel.setAttribute("for", "city");
 formCityBox.appendChild(formCityLabel);
 formCityLabel.textContent = "Ville";
 
-let formCityChamp = document.createElement("input");
-formCityChamp.classList.add("formCityChamp", "formChamp");
-formCityChamp.setAttribute("id", "city");
-formCityChamp.setAttribute("required", "required");
-formCityBox.appendChild(formCityChamp);
+let formCityChampBox = document.createElement("div");
+formCityChampBox.classList.add("formCityChampBox", "formChampBox");
+formCityBox.appendChild(formCityChampBox);
+
+let formCityChampInput = document.createElement("input");
+formCityChampInput.classList.add("formCityChampInput", "formChampInput");
+formCityChampInput.setAttribute("id", "city");
+formCityChampInput.setAttribute("required", "");
+formCityChampBox.appendChild(formCityChampInput);
+
+let formCityChampAlert = document.createElement("p");
+formCityChampAlert.classList.add("formCityChampAlert", "formChampAlert");
+formCityChampBox.appendChild(formCityChampAlert);
 
 let formEmailBox = document.createElement("div");
 formEmailBox.classList.add("formEmailBox", "formBox");
 formContact.appendChild(formEmailBox);
 
 let formEmailLabel = document.createElement("label");
-formEmailLabel.classList.add("formEmailLabel");
+formEmailLabel.classList.add("formEmailLabel", "formLabel");
 formEmailBox.setAttribute("for", "email");
 formEmailBox.appendChild(formEmailLabel);
 formEmailLabel.textContent = "Email";
 
-let formEmailChamp = document.createElement("input");
-formEmailChamp.classList.add("formEmailChamp", "formChamp");
-formEmailChamp.setAttribute("id", "email");
-formEmailChamp.setAttribute("type", "email");
-formEmailChamp.setAttribute("required", "required");
-formEmailBox.appendChild(formEmailChamp);
+let formEmailChampBox = document.createElement("div");
+formEmailChampBox.classList.add("formEmailChampBox", "formChampBox");
+formEmailBox.appendChild(formEmailChampBox);
+
+let formEmailChampInput = document.createElement("input");
+formEmailChampInput.classList.add("formEmailChampInput", "formChampInput");
+formEmailChampInput.setAttribute("id", "email");
+formEmailChampInput.setAttribute("required", "");
+formEmailChampBox.appendChild(formEmailChampInput);
+
+let formEmailChampAlert = document.createElement("p");
+formEmailChampAlert.classList.add("formCityChampAlert", "formChampAlert");
+formEmailChampBox.appendChild(formEmailChampAlert);
 
 let orderValidation = document.createElement("input");
 orderValidation.classList.add("orderValidation");
 orderValidation.setAttribute("type", "submit");
+orderValidation.setAttribute("value", "Valider votre commande");
 formBloc.appendChild(orderValidation);
-orderValidation.textContent = "Valider votre commande";
 
 // Récupération des données du localstorage
 
@@ -191,6 +233,7 @@ for (let i in teddiesCartId) {
 
     let cartPriceBox = document.createElement("button");
     cartPriceBox.classList.add("cartPriceBox");
+    cartPriceBox.setAttribute("type", "number");
     cartRecap.appendChild(cartPriceBox);
 
     // affichage du prix pour chaque ligne d'articles
@@ -239,11 +282,11 @@ for (let i in teddiesCartId) {
 
 function addContact() {
     let contact = {
-        firstName: formFirstNameChamp.value,
-        lastName: formLastNameChamp.value,
-        address: formAddressChamp.value,
-        city: formCityChamp.value,
-        email: formEmailChamp.value
+        firstName: formFirstNameChampInput.value,
+        lastName: formLastNameChampInput.value,
+        address: formAddressChampInput.value,
+        city: formCityChampInput.value,
+        email: formEmailChampInput.value
     }
 
     let contact_json = JSON.stringify(contact);
@@ -252,6 +295,78 @@ function addContact() {
 
 orderValidation.addEventListener("click", addContact);
 
+let textValidation = /^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ][a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœç]+([-'\s][a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ][a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœç]+)?/;
+let addressValidation = /^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]+[-',\s]?/;
+let emailValidation = /^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})/;
+
+function validForm(event) {
+    if (formFirstNameChampInput.validity.valueMissing) {
+        formFirstNameChampAlert.textContent = "Veuillez renseigner votre prénom";
+        event.preventDefault();
+    } else if(textValidation.test(formFirstNameChampInput.value) === false) {
+        event.preventDefault();
+        formFirstNameChampAlert.textContent = "Saisie incorrecte";
+        console.log("boubou");
+    }
+    if(formLastNameChampInput.validity.valueMissing) {
+        formLastNameChampAlert.textContent = "Veuillez renseigner votre nom";
+        event.preventDefault();
+    } else if(textValidation.test(formLastNameChampInput.value) === false) {
+        event.preventDefault();
+        formLastNameChampAlert.textContent = "Saisie incorrecte";
+    }
+    if(formAddressChampInput.validity.valueMissing) {
+        formAddressChampAlert.textContent = "Veuillez renseigner votre adresse";
+        event.preventDefault();
+    } else if(addressValidation.test(formAddressChampInput.value) === false) {
+        event.preventDefault();
+        formAddressChampAlert.textContent = "Saisie incorrecte";
+    }
+    if(formCityChampInput.validity.valueMissing) {
+        formCityChampAlert.textContent = "Veuillez renseigner votre ville";
+        event.preventDefault();
+    } else if(textValidation.test(formCityChampInput.value) === false) {
+        event.preventDefault();
+        formCityChampAlert.textContent = "Saisie incorrecte";
+    }
+    if(formEmailChampInput.validity.valueMissing) {
+        formEmailChampAlert.textContent = "Veuillez renseigner votre adresse email";
+        event.preventDefault();
+    } else if(emailValidation.test(formEmailChampInput.value) === false) {
+        event.preventDefault();
+        formEmailChampAlert.textContent = "Saisie incorrecte";
+    }
+}
+
+orderValidation.addEventListener("click", validForm);
+
+orderValidation.addEventListener("onsubmit", sendOrder);
+
+let contact = JSON.parse(localStorage.getItem("contact"));
+let products = JSON.parse(localStorage.getItem("teddiesCartId[i]"));
+
+function sendOrder() {
+    fetch("http://localhost:3000/api/teddies/order", {
+        method: "POST",
+        body: JSON.stringify(contact, products),
+        headers: {"Content-Type": "application/json"},
+    })
+        .then(function (response) {
+            if (response.ok) {
+                response.json()
+                    .then(function (dataReturn) {
+                        console.log(dataReturn);
+                        alert("Commande envoyée !");
+                        localStorage.setItem("orderId", JSON.stringify(dataReturn.orderId));
+                        localStorage.setItem("totalPrice", String(cartTotalChamp));
+                    })
+            }
+        })
+        .catch(function () {
+            console.log("erreur");
+            alert("erreur");
+        })
+}
 
 
 

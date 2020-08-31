@@ -109,35 +109,34 @@ function displayCard(teddy) {
         teddyColorTitle.textContent = "Couleur"; /* section options et ajout au panier */
         teddyQuantityTitle.textContent = "Quantité";
 
-
-        // choix de la couleur
-
-        for (let color of teddy.colors) {
-            let teddyColorButtonOptions = document.createElement("option");
-            teddyColorButtonOptions.classList.add("teddyColorButtonOptions");
-            teddyColorButtonOptions.setAttribute("value", color);
-            teddyColorButton.appendChild(teddyColorButtonOptions);
-            teddyColorButtonOptions.textContent = color;
-        }
-
-        // stockage des données dans le localstorage
-
-        function addToCart() {
-            let teddyFeatures = {
-                name: teddy.name,
-                image: teddy.imageUrl,
-                price: (teddy.price / 100).toFixed(2) + " €",
-                quantity: teddyQuantityButton.value,
-                color: teddyColorButton.value
-            }
-
-            let teddyFeatures_json = JSON.stringify(teddyFeatures);
-            localStorage.setItem(idTeddy, teddyFeatures_json);
-        }
-
-        teddyOrderButton.addEventListener("click", addToCart);
-
     }
+    // choix de la couleur
+
+    for (let color of teddy.colors) {
+        let teddyColorButtonOptions = document.createElement("option");
+        teddyColorButtonOptions.classList.add("teddyColorButtonOptions");
+        teddyColorButtonOptions.setAttribute("value", color);
+        teddyColorButton.appendChild(teddyColorButtonOptions);
+        teddyColorButtonOptions.textContent = color;
+    }
+
+    // stockage des données dans le localstorage
+
+    function addToCart() {
+        let teddyFeatures = {
+            name: teddy.name,
+            image: teddy.imageUrl,
+            price: (teddy.price / 100).toFixed(2) + " €",
+            quantity: teddyQuantityButton.value,
+            color: teddyColorButton.value
+        }
+
+        let teddyFeatures_json = JSON.stringify(teddyFeatures);
+        localStorage.setItem(idTeddy, teddyFeatures_json);
+    }
+
+    teddyOrderButton.addEventListener("click", addToCart);
+
 }
 
 

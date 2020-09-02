@@ -166,6 +166,11 @@ let formEmailChampAlert = document.createElement("p");
 formEmailChampAlert.classList.add("formCityChampAlert", "formChampAlert");
 formEmailChampBox.appendChild(formEmailChampAlert);
 
+let contactValidation = document.createElement("button");
+contactValidation.classList.add("contactValidation");
+formContact.appendChild(contactValidation);
+contactValidation.textContent = "Enregistrer vos coordonnées";
+
 let orderValidation = document.createElement("input");
 orderValidation.classList.add("orderValidation");
 orderValidation.setAttribute("type", "submit");
@@ -174,8 +179,9 @@ formBloc.appendChild(orderValidation);
 
 // Récupération des données du localstorage
 
-let teddiesCartId = Object.keys(localStorage);
+let teddiesCartId = Object.keys(localStorage).filter (e=> e!== "contact");
 console.log(teddiesCartId);
+
 let total = 0;
 
 
@@ -276,9 +282,11 @@ for (let i in teddiesCartId) {
     }
 
     cartQuantityLess.addEventListener("click", decreaseQuantity);
+
 }
 
 // Formulaire
+
 
 function addContact() {
     let contact = {
@@ -293,7 +301,7 @@ function addContact() {
     localStorage.setItem("contact", contact_json);
 }
 
-orderValidation.addEventListener("click", addContact);
+
 
 let textValidation = /^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ][a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœç]+([-'\s][a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ][a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœç]+)?/;
 let addressValidation = /^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]+[-',\s]?/;
@@ -306,7 +314,6 @@ function validForm(event) {
     } else if(textValidation.test(formFirstNameChampInput.value) === false) {
         event.preventDefault();
         formFirstNameChampAlert.textContent = "Saisie incorrecte";
-        console.log("boubou");
     }
     if(formLastNameChampInput.validity.valueMissing) {
         formLastNameChampAlert.textContent = "Veuillez renseigner votre nom";
@@ -330,35 +337,39 @@ function validForm(event) {
         formCityChampAlert.textContent = "Saisie incorrecte";
     }
     if(formEmailChampInput.validity.valueMissing) {
-        formEmailChampAlert.textContent = "Veuillez renseigner votre adresse email";
+        formEmailChampAlert.textContent = "Veuillez renseigner votre email";
         event.preventDefault();
     } else if(emailValidation.test(formEmailChampInput.value) === false) {
         event.preventDefault();
         formEmailChampAlert.textContent = "Saisie incorrecte";
+    } else {
+        addContact();
+        alert("coordonnées validées !");
     }
 }
 
-orderValidation.addEventListener("click", validForm);
+contactValidation.addEventListener("click", validForm);
 
-orderValidation.addEventListener("onsubmit", sendOrder);
-
-let contact = JSON.parse(localStorage.getItem("contact"));
-let products = JSON.parse(localStorage.getItem("teddiesCartId[i]"));
 
 function sendOrder() {
+    let contact = JSON.parse(localStorage.getItem("contact"));
+    let products = Object.keys(localStorage).filter(e=>e!=="contact");
+
     fetch("http://localhost:3000/api/teddies/order", {
         method: "POST",
-        body: JSON.stringify(contact, products),
+        body: JSON.stringify({contact: contact, products: products}),
         headers: {"Content-Type": "application/json"},
     })
         .then(function (response) {
             if (response.ok) {
                 response.json()
-                    .then(function (dataReturn) {
-                        console.log(dataReturn);
+                    .then(function (data) {
+                        console.log(data);
                         alert("Commande envoyée !");
-                        localStorage.setItem("orderId", JSON.stringify(dataReturn.orderId));
-                        localStorage.setItem("totalPrice", String(cartTotalChamp));
+                        localStorage.setItem("orderId", JSON.stringify(data.orderId));
+                        localStorage.setItem("totalPrice", JSON.stringify(cartTotalChamp.textContent));
+                        localStorage.removeItem("contact");
+                        localStorage.removeItem("products");
                     })
             }
         })
@@ -367,6 +378,8 @@ function sendOrder() {
             alert("erreur");
         })
 }
+console.log(orderValidation);
+orderValidation.addEventListener("click", sendOrder);
 
 
 

@@ -306,44 +306,67 @@ let textValidation = /^[a-zA-Záàâäãåçéèêëíìîïñóòôöõúùûü
 let addressValidation = /^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]+[-',\s]?/;
 let emailValidation = /^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})/;
 
-function validForm(event) {
-    let formChampInput = document.getElementsByClassName("formChampInput");
-    let formChampAlert = document.getElementsByClassName("formChampAlert");
-    console.log(formChampAlert);
+let formChampInput = document.getElementsByClassName("formChampInput");
+let formChampAlert = document.getElementsByClassName("formChampAlert");
 
+function onFocus() {
+    let formChampAlert = document.getElementsByClassName("formChampAlert");
+    for (let j of formChampAlert) {
+        j.textContent = "";
+        console.log(j.value);
+    }
+}
+
+function validForm() {
+
+    formFirstNameChampInput.addEventListener("focus", function () {
+        formFirstNameChampAlert.textContent = "";
+    });
     if (formFirstNameChampInput.validity.valueMissing) {
         formFirstNameChampAlert.textContent = "Veuillez renseigner votre prénom";
-        event.preventDefault();
+
     } else if (textValidation.test(formFirstNameChampInput.value) === false) {
-        event.preventDefault();
         formFirstNameChampAlert.textContent = "Saisie incorrecte";
+
     }
+    formLastNameChampInput.addEventListener("focus", function () {
+        formLastNameChampAlert.textContent = "";
+    });
     if (formLastNameChampInput.validity.valueMissing) {
         formLastNameChampAlert.textContent = "Veuillez renseigner votre nom";
-        event.preventDefault();
+
     } else if (textValidation.test(formLastNameChampInput.value) === false) {
-        event.preventDefault();
+
         formLastNameChampAlert.textContent = "Saisie incorrecte";
     }
+    formAddressChampInput.addEventListener("focus", function () {
+        formAddressChampAlert.textContent = "";
+    });
     if (formAddressChampInput.validity.valueMissing) {
         formAddressChampAlert.textContent = "Veuillez renseigner votre adresse";
-        event.preventDefault();
+
     } else if (addressValidation.test(formAddressChampInput.value) === false) {
-        event.preventDefault();
+
         formAddressChampAlert.textContent = "Saisie incorrecte";
     }
+    formCityChampInput.addEventListener("focus", function () {
+        formCityChampAlert.textContent = "";
+    });
     if (formCityChampInput.validity.valueMissing) {
         formCityChampAlert.textContent = "Veuillez renseigner votre ville";
-        event.preventDefault();
+
     } else if (textValidation.test(formCityChampInput.value) === false) {
-        event.preventDefault();
+
         formCityChampAlert.textContent = "Saisie incorrecte";
     }
+    formEmailChampInput.addEventListener("focus", function () {
+        formEmailChampAlert.textContent = "";
+    });
     if (formEmailChampInput.validity.valueMissing) {
         formEmailChampAlert.textContent = "Veuillez renseigner votre email";
-        event.preventDefault();
+
     } else if (emailValidation.test(formEmailChampInput.value) === false) {
-        event.preventDefault();
+
         formEmailChampAlert.textContent = "Saisie incorrecte";
     } else {
         addContact();
@@ -373,7 +396,7 @@ function sendOrder() {
                         localStorage.removeItem("products");
                         let formChampInput = document.getElementsByClassName("formChampInput");
                         console.log(formChampInput);
-                        for(let i of formChampInput) {
+                        for (let i of formChampInput) {
                             i.value = "";
                         }
                     })

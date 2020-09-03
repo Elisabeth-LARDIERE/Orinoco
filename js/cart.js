@@ -179,7 +179,7 @@ formBloc.appendChild(orderValidation);
 
 // Récupération des données du localstorage
 
-let teddiesCartId = Object.keys(localStorage).filter (e=> e!== "contact");
+let teddiesCartId = Object.keys(localStorage).filter (e => e !== "contact");
 console.log(teddiesCartId);
 
 let total = 0;
@@ -302,44 +302,47 @@ function addContact() {
 }
 
 
-
 let textValidation = /^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ][a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœç]+([-'\s][a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ][a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœç]+)?/;
 let addressValidation = /^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]+[-',\s]?/;
 let emailValidation = /^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})/;
 
 function validForm(event) {
+    let formChampInput = document.getElementsByClassName("formChampInput");
+    let formChampAlert = document.getElementsByClassName("formChampAlert");
+    console.log(formChampAlert);
+
     if (formFirstNameChampInput.validity.valueMissing) {
         formFirstNameChampAlert.textContent = "Veuillez renseigner votre prénom";
         event.preventDefault();
-    } else if(textValidation.test(formFirstNameChampInput.value) === false) {
+    } else if (textValidation.test(formFirstNameChampInput.value) === false) {
         event.preventDefault();
         formFirstNameChampAlert.textContent = "Saisie incorrecte";
     }
-    if(formLastNameChampInput.validity.valueMissing) {
+    if (formLastNameChampInput.validity.valueMissing) {
         formLastNameChampAlert.textContent = "Veuillez renseigner votre nom";
         event.preventDefault();
-    } else if(textValidation.test(formLastNameChampInput.value) === false) {
+    } else if (textValidation.test(formLastNameChampInput.value) === false) {
         event.preventDefault();
         formLastNameChampAlert.textContent = "Saisie incorrecte";
     }
-    if(formAddressChampInput.validity.valueMissing) {
+    if (formAddressChampInput.validity.valueMissing) {
         formAddressChampAlert.textContent = "Veuillez renseigner votre adresse";
         event.preventDefault();
-    } else if(addressValidation.test(formAddressChampInput.value) === false) {
+    } else if (addressValidation.test(formAddressChampInput.value) === false) {
         event.preventDefault();
         formAddressChampAlert.textContent = "Saisie incorrecte";
     }
-    if(formCityChampInput.validity.valueMissing) {
+    if (formCityChampInput.validity.valueMissing) {
         formCityChampAlert.textContent = "Veuillez renseigner votre ville";
         event.preventDefault();
-    } else if(textValidation.test(formCityChampInput.value) === false) {
+    } else if (textValidation.test(formCityChampInput.value) === false) {
         event.preventDefault();
         formCityChampAlert.textContent = "Saisie incorrecte";
     }
-    if(formEmailChampInput.validity.valueMissing) {
+    if (formEmailChampInput.validity.valueMissing) {
         formEmailChampAlert.textContent = "Veuillez renseigner votre email";
         event.preventDefault();
-    } else if(emailValidation.test(formEmailChampInput.value) === false) {
+    } else if (emailValidation.test(formEmailChampInput.value) === false) {
         event.preventDefault();
         formEmailChampAlert.textContent = "Saisie incorrecte";
     } else {
@@ -350,10 +353,9 @@ function validForm(event) {
 
 contactValidation.addEventListener("click", validForm);
 
-
 function sendOrder() {
     let contact = JSON.parse(localStorage.getItem("contact"));
-    let products = Object.keys(localStorage).filter(e=>e!=="contact");
+    let products = Object.keys(localStorage).filter(e => e !== "contact");
 
     fetch("http://localhost:3000/api/teddies/order", {
         method: "POST",
@@ -365,11 +367,15 @@ function sendOrder() {
                 response.json()
                     .then(function (data) {
                         console.log(data);
-                        alert("Commande envoyée !");
                         localStorage.setItem("orderId", JSON.stringify(data.orderId));
                         localStorage.setItem("totalPrice", JSON.stringify(cartTotalChamp.textContent));
                         localStorage.removeItem("contact");
                         localStorage.removeItem("products");
+                        let formChampInput = document.getElementsByClassName("formChampInput");
+                        console.log(formChampInput);
+                        for(let i of formChampInput) {
+                            i.value = "";
+                        }
                     })
             }
         })
@@ -378,8 +384,9 @@ function sendOrder() {
             alert("erreur");
         })
 }
-console.log(orderValidation);
+
 orderValidation.addEventListener("click", sendOrder);
+
 
 
 

@@ -306,6 +306,11 @@ ul {
     height: 20px;
 }
 
+.cartRecapBloc {
+    display: flex;
+    flex-direction: column;
+}
+
 .cartTotal {
     display: flex;
     order: 1;

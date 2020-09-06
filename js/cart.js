@@ -15,9 +15,13 @@ cartTitle.classList.add("cartTitle");
 cartBloc.appendChild(cartTitle);
 cartTitle.textContent = "Votre panier";
 
+let cartRecapBloc = document.createElement("div");
+cartRecapBloc.classList.add("cartRecapBloc");
+cartBloc.appendChild(cartRecapBloc);
+
 let cartTotal = document.createElement("div");
 cartTotal.classList.add("cartTotal");
-cartBloc.appendChild(cartTotal);
+cartRecapBloc.appendChild(cartTotal);
 
 let cartTotalTitle = document.createElement("p");
 cartTotalTitle.classList.add("cartTotalTitle");
@@ -195,7 +199,7 @@ for (let i in teddiesCartId) {
 
     let cartRecap = document.createElement("div");
     cartRecap.classList.add("cartRecap");
-    cartBloc.appendChild(cartRecap);
+    cartRecapBloc.appendChild(cartRecap);
 
     let cartProductBox = document.createElement("div");
     cartProductBox.classList.add("cartProductBox");
@@ -309,13 +313,6 @@ let emailValidation = /^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\
 let formChampInput = document.getElementsByClassName("formChampInput");
 let formChampAlert = document.getElementsByClassName("formChampAlert");
 
-function onFocus() {
-    let formChampAlert = document.getElementsByClassName("formChampAlert");
-    for (let j of formChampAlert) {
-        j.textContent = "";
-        console.log(j.value);
-    }
-}
 
 function validForm() {
 
@@ -399,6 +396,11 @@ function sendOrder() {
                         for (let i of formChampInput) {
                             i.value = "";
                         }
+                        let cartRecapBloc = document.getElementsByClassName("cartRecapBloc");
+                        for (let i = 0; i < cartRecapBloc.length; i++) {
+                            cartRecapBloc[i].innerHTML = "";
+                        }
+
                     })
             }
         })

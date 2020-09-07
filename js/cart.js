@@ -183,8 +183,8 @@ formBloc.appendChild(orderValidation);
 
 // Récupération des données du localstorage
 
-let products = JSON.parse(localStorage.getItem("products"));
-console.log(products);
+let teddies = JSON.parse(localStorage.getItem("products"));
+console.log(teddies);
 
 /*let teddiesCartId = Object.keys(localStorage).filter (e => e !== "contact");
 console.log(teddiesCartId);*/
@@ -194,7 +194,7 @@ let total = 0;
 
 // Affichage du panier
 
-for (let teddy of products) {
+for (let teddy of teddies) {
 
     // création des nouveaux éléments du DOM
 
@@ -375,7 +375,14 @@ contactValidation.addEventListener("click", validForm);
 function sendOrder() {
 
     let contact = JSON.parse(localStorage.getItem("contact"));
-    /*let products = JSON.parse(localStorage.getItem("products"));*/
+    let productsId = [];
+    for(let teddy of teddies) {
+        let idTeddy = teddy.id;
+        productsId.push(idTeddy);
+    }
+    let productsId_json = JSON.stringify(productsId);
+    localStorage.setItem("products", productsId_json);
+    let products = JSON.parse(localStorage.getItem("products"));
 
     fetch("http://localhost:3000/api/teddies/order", {
         method: "POST",
@@ -390,6 +397,7 @@ function sendOrder() {
                         localStorage.setItem("orderId", JSON.stringify(data.orderId));
                         localStorage.setItem("totalPrice", JSON.stringify(cartTotalChamp.textContent));
                         localStorage.removeItem("contact");
+                        localStorage.removeItem("teddies");
                         localStorage.removeItem("products");
                         let formChampInput = document.getElementsByClassName("formChampInput");
                         for (let i of formChampInput) {

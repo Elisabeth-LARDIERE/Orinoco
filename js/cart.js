@@ -183,17 +183,18 @@ formBloc.appendChild(orderValidation);
 
 // Récupération des données du localstorage
 
-let teddiesCartId = Object.keys(localStorage).filter (e => e !== "contact");
-console.log(teddiesCartId);
+let products = JSON.parse(localStorage.getItem("products"));
+console.log(products);
+
+/*let teddiesCartId = Object.keys(localStorage).filter (e => e !== "contact");
+console.log(teddiesCartId);*/
 
 let total = 0;
 
 
 // Affichage du panier
 
-for (let i in teddiesCartId) {
-    let teddy = JSON.parse(localStorage.getItem(teddiesCartId[i]));
-    console.log(teddiesCartId[i]);
+for (let teddy of products) {
 
     // création des nouveaux éléments du DOM
 
@@ -221,23 +222,23 @@ for (let i in teddiesCartId) {
     cartProductColor.textContent = teddy.color;
 
     let cartQuantityBox = document.createElement("div");
-    cartQuantityBox.classList.add("cartQuantityBox");
+    cartQuantityBox.classList.add("cartQuantityBox", "quantityBox");
     cartRecap.appendChild(cartQuantityBox);
 
     let cartQuantityLess = document.createElement("button");
-    cartQuantityLess.classList.add("cartQuantityLess");
+    cartQuantityLess.classList.add("cartQuantityLess", "quantityLess");
     cartQuantityBox.appendChild(cartQuantityLess);
     cartQuantityLess.textContent = " - ";
 
     let cartQuantityChamp = document.createElement("button");
-    cartQuantityChamp.classList.add("cartQuantityChamp");
+    cartQuantityChamp.classList.add("cartQuantityChamp", "quantityChamp");
     cartQuantityChamp.setAttribute("type", "number");
     cartQuantityChamp.setAttribute("min", "1");
     cartQuantityBox.appendChild(cartQuantityChamp);
     cartQuantityChamp.textContent = teddy.quantity;
 
     let cartQuantityMore = document.createElement("button");
-    cartQuantityMore.classList.add("cartQuantityMore");
+    cartQuantityMore.classList.add("cartQuantityMore", "quantityMore");
     cartQuantityBox.appendChild(cartQuantityMore);
     cartQuantityMore.textContent = " + ";
 
@@ -261,12 +262,11 @@ for (let i in teddiesCartId) {
     function increaseQuantity() {
         cartQuantityChamp.textContent++;
         teddy.quantity++;
-        localStorage.setItem(teddiesCartId[i], JSON.stringify(teddy));
+        localStorage.setItem("products", JSON.stringify(teddy));
         recapPrice = parseInt(teddy.price) * teddy.quantity;
         cartPriceBox.textContent = String((recapPrice).toFixed(2)) + " € ";
         total += parseInt(teddy.price);
         cartTotalChamp.textContent = total.toFixed(2) + " € ";
-
     }
 
     cartQuantityMore.addEventListener("click", increaseQuantity);
@@ -277,7 +277,7 @@ for (let i in teddiesCartId) {
         } else {
             cartQuantityChamp.textContent--;
             teddy.quantity--;
-            localStorage.setItem(teddiesCartId[i], JSON.stringify(teddy));
+            localStorage.setItem("products", JSON.stringify(teddy));
             recapPrice = parseInt(teddy.price) * teddy.quantity;
             cartPriceBox.textContent = String((recapPrice).toFixed(2)) + " € ";
             total -= parseInt(teddy.price);
@@ -304,7 +304,6 @@ function addContact() {
     let contact_json = JSON.stringify(contact);
     localStorage.setItem("contact", contact_json);
 }
-
 
 let textValidation = /^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ][a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœç]+([-'\s][a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ][a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœç]+)?/;
 let addressValidation = /^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]+[-',\s]?/;
@@ -374,13 +373,14 @@ function validForm() {
 contactValidation.addEventListener("click", validForm);
 
 function sendOrder() {
+
     let contact = JSON.parse(localStorage.getItem("contact"));
-    let products = Object.keys(localStorage).filter(e => e !== "contact");
+    /*let products = JSON.parse(localStorage.getItem("products"));*/
 
     fetch("http://localhost:3000/api/teddies/order", {
         method: "POST",
         body: JSON.stringify({contact: contact, products: products}),
-        headers: {"Content-Type": "application/json"},
+        headers: {"Content-Type": "application/json"}
     })
         .then(function (response) {
             if (response.ok) {
@@ -392,7 +392,6 @@ function sendOrder() {
                         localStorage.removeItem("contact");
                         localStorage.removeItem("products");
                         let formChampInput = document.getElementsByClassName("formChampInput");
-                        console.log(formChampInput);
                         for (let i of formChampInput) {
                             i.value = "";
                         }

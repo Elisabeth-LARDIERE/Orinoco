@@ -24,92 +24,104 @@ let main = document.querySelector("main");
 
 // Création des nouveaux éléments du DOM
 
-let teddyCard = document.createElement("section"); /* section vue détaillée et description ours */
+// section vue détaillée et description de l'ours
+
+let teddyCard = document.createElement("section");
+teddyCard.classList.add("teddyCard");
+main.appendChild(teddyCard);
+
 let teddyView = document.createElement("div");
+teddyView.classList.add("teddyView");
+teddyCard.appendChild(teddyView);
+
 let teddyNameCard = document.createElement("h3");
+teddyNameCard.classList.add("teddyNameCard");
+teddyView.appendChild(teddyNameCard);
+
 let teddyImageCard = document.createElement("img");
+teddyImageCard.classList.add("teddyImageCard");
+teddyView.appendChild(teddyImageCard);
+
 let teddyDescription = document.createElement("div");
+teddyDescription.classList.add("teddyDescription");
+teddyCard.appendChild(teddyDescription);
+
 let teddyText = document.createElement("p");
+teddyText.classList.add("teddyText");
+teddyDescription.appendChild(teddyText);
+
 let teddyPriceCard = document.createElement("p");
+teddyPriceCard.classList.add("teddyPriceCard");
+teddyPriceCard.setAttribute("type", "number");
+teddyDescription.appendChild(teddyPriceCard);
 
+// section options et ajout au panier
 
-let teddyOrderBox = document.createElement("section"); /* section options et ajout au panier */
+let teddyOrderBox = document.createElement("section");
+teddyOrderBox.classList.add("teddyOrderBox");
+main.appendChild(teddyOrderBox);
+
 let teddyChoiceBox = document.createElement("div");
-let teddyColor = document.createElement("div");
-let teddyColorTitle = document.createElement("label");
-let teddyColorButton = document.createElement("select");
-let teddyQuantity = document.createElement("div");
-let teddyQuantityTitle = document.createElement("label");
-let teddyQuantityButton = document.createElement("input");
-let teddyOrderButton = document.createElement("button");
-let teddyOrderButtonLogo = document.createElement("i");
+teddyChoiceBox.classList.add("teddyChoiceBox");
+teddyOrderBox.appendChild(teddyChoiceBox);
 
-// Affichage de l'ourson sélectionné et des options : couleurs / quantité / ajout au panier
+let teddyColor = document.createElement("div");
+teddyColor.classList.add("teddyColor");
+teddyChoiceBox.appendChild(teddyColor);
+
+let teddyColorTitle = document.createElement("label");
+teddyColorTitle.classList.add("teddyColorTitle", "title");
+teddyColorTitle.setAttribute("for", "color");
+teddyColor.appendChild(teddyColorTitle);
+teddyColorTitle.textContent = "Couleur";
+
+let teddyColorButton = document.createElement("select");
+teddyColorButton.classList.add("teddyColorButton", "button");
+teddyColorButton.setAttribute("id", "color");
+teddyColor.appendChild(teddyColorButton);
+
+let teddyQuantity = document.createElement("div");
+teddyQuantity.classList.add("teddyQuantity");
+teddyChoiceBox.appendChild(teddyQuantity);
+
+let teddyQuantityTitle = document.createElement("label");
+teddyQuantityTitle.classList.add("teddyQuantityTitle", "title");
+teddyQuantity.appendChild(teddyQuantityTitle);
+teddyQuantityTitle.textContent = "Quantité";
+
+let teddyQuantityButton = document.createElement("input");
+teddyQuantityButton.classList.add("teddyQuantityButton", "button");
+teddyQuantityButton.setAttribute("type", "number");
+teddyQuantityButton.setAttribute("min", "1");
+teddyQuantity.appendChild(teddyQuantityButton);
+teddyQuantityButton.value = "1";
+
+let teddyOrderButton = document.createElement("button");
+teddyOrderButton.classList.add("teddyOrderButton");
+teddyOrderBox.appendChild(teddyOrderButton);
+
+let teddyOrderButtonLogo = document.createElement("i");
+teddyOrderButtonLogo.classList.add("fas", "fa-shopping-cart");
+teddyOrderButton.appendChild(teddyOrderButtonLogo);
+
+// Affichage de l'ourson sélectionné et des options choisies (couleurs / quantité) et ajout au panier
 
 function displayCard(teddy) {
 
     for (let param in teddy) {
 
-        // ajout des attributs aux nouveaux éléments du DOM
+        // section vue détaillée et description de l'ours
 
-        teddyCard.classList.add("teddyCard"); /* section vue détaillée et description ours */
-        teddyView.classList.add("teddyView");
-        teddyNameCard.classList.add("teddyNameCard");
-        teddyImageCard.classList.add("teddyImageCard");
+        teddyNameCard.textContent = teddy.name;
+
         teddyImageCard.setAttribute("src", teddy.imageUrl);
-        teddyDescription.classList.add("teddyDescription");
-        teddyText.classList.add("teddyText");
-        teddyPriceCard.classList.add("teddyPriceCard");
-        teddyPriceCard.setAttribute("type", "number");
 
-        teddyOrderBox.classList.add("teddyOrderBox"); /* section options et ajout au panier */
-        teddyChoiceBox.classList.add("teddyChoiceBox");
-        teddyColor.classList.add("teddyColor");
-        teddyColorTitle.classList.add("teddyColorTitle", "title");
-        teddyColorTitle.setAttribute("for", "color");
-        teddyColorButton.classList.add("teddyColorButton", "button");
-        teddyColorButton.setAttribute("id", "color");
-        teddyQuantity.classList.add("teddyQuantity");
-        teddyQuantityTitle.classList.add("teddyQuantityTitle", "title");
-        teddyQuantityButton.classList.add("teddyQuantityButton", "button");
-        teddyQuantityButton.setAttribute("type", "number");
-        teddyQuantityButton.setAttribute("min", "1");
-        teddyQuantityButton.setAttribute("value", "1");
-
-        teddyOrderButton.classList.add("teddyOrderButton");
-        teddyOrderButtonLogo.classList.add("fas", "fa-shopping-cart");
-
-        // intégration des nouveaux éléments au DOM
-
-        main.appendChild(teddyCard); /* section vue détaillée et description ours */
-        teddyCard.appendChild(teddyView);
-        teddyView.appendChild(teddyNameCard);
-        teddyView.appendChild(teddyImageCard);
-        teddyCard.appendChild(teddyDescription);
-        teddyDescription.appendChild(teddyText);
-        teddyDescription.appendChild(teddyPriceCard);
-
-        main.appendChild(teddyOrderBox); /* section options et ajout au panier */
-        teddyOrderBox.appendChild(teddyChoiceBox);
-        teddyChoiceBox.appendChild(teddyColor);
-        teddyColor.appendChild(teddyColorTitle);
-        teddyColor.appendChild(teddyColorButton);
-        teddyChoiceBox.appendChild(teddyQuantity);
-        teddyQuantity.appendChild(teddyQuantityTitle);
-        teddyQuantity.appendChild(teddyQuantityButton);
-        teddyOrderBox.appendChild(teddyOrderButton);
-        teddyOrderButton.appendChild(teddyOrderButtonLogo);
-
-        // ajout de contenu
-
-        teddyNameCard.textContent = teddy.name; /* section vue détaillée et description ours */
         teddyText.textContent = teddy.description;
+
         teddyPriceCard.textContent = (teddy.price / 100).toFixed(2) + " €";
 
-        teddyColorTitle.textContent = "Couleur"; /* section options et ajout au panier */
-        teddyQuantityTitle.textContent = "Quantité";
-
     }
+
     // choix de la couleur
 
     for (let color of teddy.colors) {
@@ -123,22 +135,36 @@ function displayCard(teddy) {
     // stockage des données dans le localstorage
 
     function addToCart() {
-        let teddyFeatures = {
+
+        let teddies = JSON.parse(localStorage.getItem("products")) || [];
+        console.log(teddies);
+
+        let newTeddy = {
+            id: idTeddy,
             name: teddy.name,
             image: teddy.imageUrl,
             price: (teddy.price / 100).toFixed(2) + " €",
             quantity: teddyQuantityButton.value,
             color: teddyColorButton.value
+        };
+
+        if (teddies.length === 0) {
+            teddies.push(newTeddy);
+            localStorage.setItem("products", JSON.stringify(teddies));
+        } else if (teddies.length > 0) {
+            for (let i of teddies) {
+                if (i.name !== newTeddy.name) {
+                    teddies.push(newTeddy);
+                    localStorage.setItem("products", JSON.stringify(teddies));
+                } else if (i.name === newTeddy.name) {
+                    i.quantity = i.quantity.replace(i.quantity, newTeddy.quantity);
+                    localStorage.setItem("products", JSON.stringify(teddies));
+                }
+            }
         }
-
-        let teddyFeatures_json = JSON.stringify(teddyFeatures);
-        localStorage.setItem(idTeddy, teddyFeatures_json);
     }
-
     teddyOrderButton.addEventListener("click", addToCart);
-
 }
-
 
 
 

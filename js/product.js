@@ -1,20 +1,17 @@
 // Récupération des oursons individuels auprès de l'API
 
 let idTeddy = location.search.slice(1);
-console.log(idTeddy);
 
 fetch("http://localhost:3000/api/teddies/" + idTeddy)
     .then(function (response) {
         if (response.ok) {
             response.json()
                 .then(function (teddy) {
-                    console.log(teddy);
                     displayCard(teddy);
                 })
         }
     })
     .catch(function () {
-        console.log("erreur");
         alert("erreur");
     })
 
@@ -137,7 +134,6 @@ function displayCard(teddy) {
     function addToCart() {
 
         let teddies = JSON.parse(localStorage.getItem("products")) || [];
-        console.log(teddies);
 
         let newTeddy = {
             id: idTeddy,

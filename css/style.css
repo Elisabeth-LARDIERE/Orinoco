@@ -51,27 +51,46 @@ a {
     text-decoration: none;
     color: black;
     font-family: "Josefin Sans", serif;
+    font-size: 2em;
 }
 
 /*************** headings ***************/
 
+h1 {
+    font-family: "Marck Script", serif;
+    font-size: 3.5em;
+    font-weight: lighter;
+    align-self: center;
+    text-align: center;
+    padding-left: 250px;
+}
+
 h2 {
     font-family: "Josefin Sans", serif;
-    font-size: 1.5em;
+    font-size: 2.4em;
     font-weight: lighter;
     text-align: center;
 }
 
 h3 {
     font-family: "Marck Script", serif;
-    font-size: 1.2em;
+    font-size: 1.6em;
     font-weight: lighter;
+}
+
+h4 {
+    font-family: "Marck Script", serif;
+    font-size: 1.3em;
+    font-weight: lighter;
+    padding-bottom: 10px;
+    text-align: center;
 }
 
 /*************** buttons ***************/
 
 .button {
     font-family: "Josefin Sans", serif;
+    font-size: 0.9em;
 }
 
 /******************** HEADER ********************/
@@ -79,17 +98,34 @@ h3 {
 header {
     min-height: 15vh;
     background-color: #F3E9F1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 100px;
+    height: 45px;
+    padding-left: 10px;
 }
 
 nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 50px 0 50px;
+    align-self: center;
+    font-size: 0.8em;
+    padding-right: 10px;
 }
 
 nav li {
+    padding: 15px;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
     list-style: none;
-    padding-right: 10px;
+}
+
+.fa-shopping-cart {
+    font-size: 0.7em;
 }
 
 /******************** MAIN ********************/
@@ -103,19 +139,22 @@ main {
 
 /*************** Liste ***************/
 
-ul {
+.introList {
+    margin-top: 15px;
+}
+.teddiesList {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     justify-content: space-around;
-    margin: 0 20px 20px;
+    margin: 0 20px 60px;
 }
 
 .teddyBox {
     display: flex;
     flex-direction: column;
-    width: 150px;
-    height: 180px;
+    width: 230px;
+    height: 260px;
     justify-content: space-around;
     align-items: center;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -132,6 +171,7 @@ ul {
 
 .teddyPrice {
     font-family: "Marck Script", serif;
+    font-size: 1.4em;
 }
 
 /*************** Fiche produit ours ***************/
@@ -163,6 +203,7 @@ ul {
 }
 
 .teddyNameCard {
+    font-size: 2em;
     padding-bottom: 10px;
 }
 
@@ -174,12 +215,14 @@ ul {
     display: flex;
     flex-direction: column;
     font-family: "Josefin Sans", serif;
+    font-size: 1.5em;
     margin-right: 15px;
     line-height: 1.2em;
 }
 
 .teddyPriceCard {
     font-family: "Marck Script", serif;
+    font-size: 1.3em;
     text-align: center;
     padding-top: 15px;
 }
@@ -195,7 +238,7 @@ ul {
 
 .teddyChoiceBox {
     font-family: "Josefin Sans", serif;
-    font-size: 0.9em;
+    font-size: 1.5em;
 }
 
 .teddyColor {
@@ -206,7 +249,7 @@ ul {
 
 .teddyColorButton {
     width: 45%;
-    height: 15px;
+    height: 25px;
     margin-right: 20px;
 }
 
@@ -217,6 +260,7 @@ ul {
 
 .teddyQuantityButton {
     width: 30%;
+    height: 25px;
     margin-right: 20px;
     text-align: right;
 }
@@ -226,29 +270,42 @@ ul {
 }
 
 .teddyOrderButton {
-    width: 20%;
-    font-family: "Marck Script", serif;
+    width: 10%;
+    height: 40px;
+}
+
+.teddyOrderButton .fas {
+    font-size: 1.5em;
 }
 
 /*************** Panier et formulaire de contact ***************/
 
 .main_cart {
     display: flex;
-    flex-direction: row;
-    justify-content: normal;
+    flex-direction: column;
+}
+
+.cartAndFormBox {
+    display: flex;
+    justify-content: space-around;
 }
 
 /********** panier **********/
 
 .cartTitle, .formTitle {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 .cartBloc {
     width: 50%;
     display: flex;
     flex-direction: column;
     margin-left: 15px;
+}
+
+.cartRecapBloc {
+    display: flex;
+    flex-direction: column;
 }
 
 .cartRecap {
@@ -262,9 +319,10 @@ ul {
 
 .cartProductBox {
     display: flex;
-    font-family: "Marck Script", serif;
     align-items: center;
-    width: 65%;
+    font-family: "Marck Script", serif;
+    font-size: 1.5em;
+    width: 55%;
 }
 
 .cartProductImage {
@@ -272,7 +330,7 @@ ul {
 }
 
 .cartProductName {
-    padding: 10px;
+    padding: 20px;
 }
 
 .cartProductColor {
@@ -282,53 +340,63 @@ ul {
 .cartQuantityBox {
     display: flex;
     width: 20%;
-    height: 30%;
+    height: 30px;
 }
 
 .cartQuantityMore, .cartQuantityLess {
-    width: 20px;
+    width: 40px;
+    height: 30px;
     font-family: "Josefin Sans", serif;
-    font-size: 0.8em;
+    font-size: 1.2em;
     font-weight: bolder;
 }
 
 .cartQuantityChamp {
-    width: 40px;
+    width: 50px;
+    height: 30px;
     font-family: "Josefin Sans", serif;
-    font-size: 0.7em;
+    font-size: 1.2em;
     font-weight: bolder;
 }
 
 .cartPriceBox {
-    margin-left: 30px;
+    margin-left: 20px;
     padding-left: 5px;
     padding-right: 5px;
     font-family: "Josefin Sans", serif;
-    font-size: 0.7em;
+    font-size: 1.2em;
     font-weight: bolder;
     width: 15%;
-    height: 20px;
+    height: 30px;
 }
 
-.cartRecapBloc {
-    display: flex;
-    flex-direction: column;
+.cartTrashBox {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
 }
 
 .cartTotal {
     display: flex;
     order: 1;
     justify-content: flex-end;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.cartTotalTitle {
     font-family: "Josefin Sans", serif;
-    margin-top: 10px;
+    font-size: 2em;
+    align-self: center;
 }
 
 .cartTotalChamp {
     font-family: "Josefin Sans", serif;
+    font-size: 1.3em;
     font-weight: bold;
     width: 15%;
+    height: 40px;
     margin-left: 15px;
-    margin-right: 10px;
 }
 
 /********** formulaire **********/
@@ -337,7 +405,7 @@ ul {
     display: flex;
     flex-direction: column;
     width: 40%;
-    margin-left: 50px;
+
     margin-right: 15px;
 }
 
@@ -345,6 +413,7 @@ ul {
     display: flex;
     flex-direction: column;
     font-family: "Marck Script", serif;
+    font-size: 1.6em;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     margin-top: 5px;
     margin-bottom: 30px;
@@ -352,8 +421,7 @@ ul {
 
 .formBox {
     display: flex;
-    justify-content: space-between;
-    margin: 10px;
+    margin: 15px;
 }
 
 .formLabel {
@@ -363,12 +431,13 @@ ul {
 .formChampBox {
     display: flex;
     flex-direction: column;
-    margin-left: 10px;
     width: 70%;
 }
 
 .formChampInput {
     font-family: "Josefin Sans", serif;
+    height: 30px;
+    font-size: 1em;
 }
 
 .formChampAlert {
@@ -376,17 +445,78 @@ ul {
     color: blue;
 }
 
+.contactValidation {
+    font-family: "Josefin Sans", serif;
+    font-size: 1em;
+    border-style: none;
+    height: 30px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
 .orderValidation {
-    width: 50%;
-    align-self: center;
+    width: 20%;
+    border-style: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     padding: 10px;
+    align-self: center;
+    font-family: "Josefin Sans", serif;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+/*************** Récapitulatif de commande et remerciements ***************/
+
+.orderSummaryBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.orderSummaryDetails {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    background-color: #F3E9F1;
+    width: fit-content;
+    padding: 15px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    line-height: 2;
+}
+
+.orderSummaryTotalTitle, .orderSummaryNumberTitle, .orderInformations {
+    font-family: "Marck Script", serif;
+    font-size: 1.5em;
+}
+
+.orderSummaryTotalPrice, .orderSummaryNumberId {
+    font-family: "Josefin Sans", serif;
+    font-size: 1.5em;
 }
 
 /******************** FOOTER ********************/
 
 footer {
     min-height: 15vh;
-    position: sticky;
-    bottom: 0;
     background-color: #F3E9F1;
+}
+
+#contact {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 40px;
+}
+
+.infos {
+    font-family: "Josefin Sans", serif;
+    line-height: 1.5;
+}
+
+.socialInfos {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+.social i {
+    font-size: 2em;
 }

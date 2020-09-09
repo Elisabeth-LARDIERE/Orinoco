@@ -5,13 +5,11 @@ fetch("http://localhost:3000/api/teddies")
         if(response.ok) {
             response.json()
                 .then(function(teddies) {
-                    console.log(teddies);
                     displayTeddies(teddies);
                 });
         }
     })
     .catch(function() {
-        console.log("erreur");
         alert("erreur");
     });
 
@@ -61,7 +59,7 @@ function displayTeddies(teddies) {
 
         // ajout de contenu
 
-        introList.textContent = "Notre sélection d'ours en peluche";
+        introList.textContent = "Notre sélection d'ours en peluche faits à la main";
         teddyName.textContent = teddy.name;
         teddyPrice.textContent = (teddy.price / 100).toFixed(2) + " €";
     }

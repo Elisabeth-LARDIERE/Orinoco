@@ -6,9 +6,13 @@ let main = document.querySelector("main");
 
 /* panier */
 
+let cartAndFormBox = document.createElement("div");
+cartAndFormBox.classList.add("cartAndFormBox");
+main.appendChild(cartAndFormBox);
+
 let cartBloc = document.createElement("section");
 cartBloc.classList.add("cartBloc");
-main.appendChild(cartBloc);
+cartAndFormBox.appendChild(cartBloc);
 
 let cartTitle = document.createElement("h2");
 cartTitle.classList.add("cartTitle");
@@ -21,7 +25,7 @@ cartBloc.appendChild(cartRecapBloc);
 
 let cartTotal = document.createElement("div");
 cartTotal.classList.add("cartTotal");
-cartRecapBloc.appendChild(cartTotal);
+cartBloc.appendChild(cartTotal);
 
 let cartTotalTitle = document.createElement("p");
 cartTotalTitle.classList.add("cartTotalTitle");
@@ -37,7 +41,7 @@ cartTotal.appendChild(cartTotalChamp);
 
 let formBloc = document.createElement("section");
 formBloc.classList.add("formBloc");
-main.appendChild(formBloc);
+cartAndFormBox.appendChild(formBloc);
 
 let formTitle = document.createElement("h2");
 formTitle.classList.add("formTitle");
@@ -179,22 +183,17 @@ let orderValidation = document.createElement("input");
 orderValidation.classList.add("orderValidation");
 orderValidation.setAttribute("type", "submit");
 orderValidation.setAttribute("value", "Valider votre commande");
-formBloc.appendChild(orderValidation);
+main.appendChild(orderValidation);
 
 // Récupération des données du localstorage
 
 let teddies = JSON.parse(localStorage.getItem("products"));
-console.log(teddies);
-
-/*let teddiesCartId = Object.keys(localStorage).filter (e => e !== "contact");
-console.log(teddiesCartId);*/
-
-let total = 0;
-
 
 // Affichage du panier
 
 for (let teddy of teddies) {
+
+    let total = 0;
 
     // création des nouveaux éléments du DOM
 
@@ -214,12 +213,12 @@ for (let teddy of teddies) {
     let cartProductName = document.createElement("p");
     cartProductName.classList.add("cartProductName");
     cartProductBox.appendChild(cartProductName);
-    cartProductName.textContent = teddy.name + " - ";
+    cartProductName.textContent = teddy.name;
 
     let cartProductColor = document.createElement("p");
     cartProductColor.classList.add("cartProductColor");
     cartProductBox.appendChild(cartProductColor);
-    cartProductColor.textContent = teddy.color;
+    cartProductColor.textContent = " - " + teddy.color;
 
     let cartQuantityBox = document.createElement("div");
     cartQuantityBox.classList.add("cartQuantityBox", "quantityBox");
@@ -246,6 +245,14 @@ for (let teddy of teddies) {
     cartPriceBox.classList.add("cartPriceBox");
     cartPriceBox.setAttribute("type", "number");
     cartRecap.appendChild(cartPriceBox);
+
+    let cartTrashBox = document.createElement("button");
+    cartTrashBox.classList.add("cartTrashBox");
+    cartRecap.appendChild(cartTrashBox);
+
+    let cartTrashBoxLogo = document.createElement("i");
+    cartTrashBoxLogo.classList.add("fas", "fa-trash-alt");
+    cartTrashBox.appendChild(cartTrashBoxLogo);
 
     // affichage du prix pour chaque ligne d'articles
 
@@ -286,6 +293,20 @@ for (let teddy of teddies) {
     }
 
     cartQuantityLess.addEventListener("click", decreaseQuantity);
+
+    function removeProduct() {
+        if (cartRecapBloc.innerHTML !== "") {
+            total -= recapPrice;
+            cartTotalChamp.textContent = total.toFixed(2) + " € ";
+            cartRecap.remove();
+            if (cartProductName.textContent === teddy.name) {
+                teddies = teddies.filter(item => item !== teddy);
+                localStorage.setItem("products", JSON.stringify(teddies));
+            }
+        }
+    }
+
+    cartTrashBox.addEventListener("click", removeProduct);
 
 }
 
@@ -376,7 +397,7 @@ function sendOrder() {
 
     let contact = JSON.parse(localStorage.getItem("contact"));
     let productsId = [];
-    for(let teddy of teddies) {
+    for (let teddy of teddies) {
         let idTeddy = teddy.id;
         productsId.push(idTeddy);
     }
@@ -393,10 +414,9 @@ function sendOrder() {
             if (response.ok) {
                 response.json()
                     .then(function (data) {
-                        console.log(data);
                         localStorage.setItem("orderId", JSON.stringify(data.orderId));
                         localStorage.setItem("totalPrice", JSON.stringify(cartTotalChamp.textContent));
-                        localStorage.removeItem("contact");
+                        /*localStorage.removeItem("contact");*/
                         localStorage.removeItem("teddies");
                         localStorage.removeItem("products");
                         let formChampInput = document.getElementsByClassName("formChampInput");
@@ -407,12 +427,11 @@ function sendOrder() {
                         for (let i = 0; i < cartRecapBloc.length; i++) {
                             cartRecapBloc[i].innerHTML = "";
                         }
-
+                        location.href = "order.html";
                     })
             }
         })
         .catch(function () {
-            console.log("erreur");
             alert("erreur");
         })
 }

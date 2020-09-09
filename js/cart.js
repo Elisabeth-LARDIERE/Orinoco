@@ -188,12 +188,11 @@ main.appendChild(orderValidation);
 // Récupération des données du localstorage
 
 let teddies = JSON.parse(localStorage.getItem("products"));
+let total = 0;
 
 // Affichage du panier
 
 for (let teddy of teddies) {
-
-    let total = 0;
 
     // création des nouveaux éléments du DOM
 

@@ -111,7 +111,7 @@ header {
 nav {
     align-self: center;
     font-size: 0.8em;
-    padding-right: 10px;
+    padding-right: 30px;
 }
 
 nav li {
@@ -124,8 +124,22 @@ nav li {
     list-style: none;
 }
 
+.cart {
+    display: flex;
+}
+
+.cartCounter {
+    display: flex;
+    margin-left: 10px;
+    font-size: 1.2em;
+}
+
 .fa-shopping-cart {
-    font-size: 0.7em;
+    align-self: center;
+}
+
+.cartCounterNumber {
+    align-self: flex-end;
 }
 
 /******************** MAIN ********************/

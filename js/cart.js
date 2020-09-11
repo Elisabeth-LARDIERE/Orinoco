@@ -188,8 +188,44 @@ main.appendChild(orderValidation);
 // Récupération des données du localstorage
 
 let teddies = JSON.parse(localStorage.getItem("products"));
+let cartCounter = JSON.parse(localStorage.getItem("cartCounter")) || 0;
+
+// Affichage du nombre d'articles dans le panier sur le compteur-panier (header)
+
+let cartCounterNumber = document.getElementsByClassName("cartCounterNumber");
+
+function loadCartCounter() {
+
+    for (let i of cartCounterNumber) {
+        i.textContent = cartCounter;
+    }
+}
+loadCartCounter();
+
 // suppression de la couleur et restockage //
+
 let total = 0;
+
+// Mise à jour du compteur-panier aux changements de quantités
+
+function updateCounterCart() {
+
+    let teddiesQuantity = [];
+    for (let teddy of teddies) {
+        teddiesQuantity.push(parseInt(teddy.quantity));
+    }
+
+    let teddiesQuantityTotal = 0;
+    for (let i = 0; i < teddiesQuantity.length; i++) {
+        teddiesQuantityTotal += teddiesQuantity[i];
+    }
+
+    for(let i of cartCounterNumber) {
+        i.textContent = teddiesQuantityTotal;
+    }
+
+    localStorage.setItem("cartCounter", JSON.stringify(teddiesQuantityTotal));
+}
 
 // Affichage du panier
 
@@ -274,6 +310,7 @@ for (let teddy of teddies) {
         cartPriceBox.textContent = String((recapPrice).toFixed(2)) + " € ";
         total += parseInt(teddy.price);
         cartTotalChamp.textContent = total.toFixed(2) + " € ";
+        updateCounterCart();
     }
 
     cartQuantityMore.addEventListener("click", increaseQuantity);
@@ -290,6 +327,7 @@ for (let teddy of teddies) {
             total -= parseInt(teddy.price);
             cartTotalChamp.textContent = total.toFixed(2) + " € ";
         }
+        updateCounterCart();
     }
 
     cartQuantityLess.addEventListener("click", decreaseQuantity);
@@ -304,6 +342,7 @@ for (let teddy of teddies) {
                 localStorage.setItem("products", JSON.stringify(teddies));
             }
         }
+        updateCounterCart();
     }
 
     cartTrashBox.addEventListener("click", removeProduct);
@@ -417,6 +456,8 @@ function sendOrder() {
                         localStorage.setItem("orderId", JSON.stringify(data.orderId));
                         localStorage.setItem("totalPrice", JSON.stringify(cartTotalChamp.textContent));
                         localStorage.removeItem("products");
+                        localStorage.removeItem("cartCounter");
+                        updateCounterCart();
                         let formChampInput = document.getElementsByClassName("formChampInput");
                         for (let i of formChampInput) {
                             i.value = "";

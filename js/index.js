@@ -6,6 +6,7 @@ fetch("http://localhost:3000/api/teddies")
             response.json()
                 .then(function(teddies) {
                     displayTeddies(teddies);
+                    loadCartCounter();
                 });
         }
     })
@@ -13,21 +14,32 @@ fetch("http://localhost:3000/api/teddies")
         alert("erreur");
     });
 
-// Récupération des éléments existants du DOM
+// Récupération des données du localstorage
+
+let cartCounter = JSON.parse(localStorage.getItem("cartCounter")) || 0;
+
+// Affichage du nombre d'articles dans le panier sur le compteur-panier (header)
+
+let cartCounterNumber = document.getElementsByClassName("cartCounterNumber");
+
+function loadCartCounter() {
+
+    for (let i of cartCounterNumber) {
+        i.textContent = cartCounter;
+    }
+}
+
+// Affichage de la liste des oursons avec le nom, l'image, le lien vers la fiche individuelle et le prix pour chacun
 
 let main = document.querySelector("main");
-
-// Création des nouveaux éléments du DOM
 
 let introList = document.createElement("h2");
 let teddiesList = document.createElement("ul");
 
-// Affichage de la liste des oursons disponibles
 
 function displayTeddies(teddies) {
-    for(let teddy of teddies) {
 
-        // création des nouveaux éléments du DOM : liste de conteneurs d'ours avec nom/image/lien produit/prix
+    for(let teddy of teddies) {
 
         let teddyBox= document.createElement("li");
         let teddyName = document.createElement("h3");
@@ -35,7 +47,6 @@ function displayTeddies(teddies) {
         let teddyLink = document.createElement("a");
         let teddyPrice = document.createElement("p");
 
-        // ajout d'attributs aux nouveaux éléments du DOM
 
         introList.classList.add("introList");
         teddiesList.classList.add("teddiesList");
@@ -47,7 +58,6 @@ function displayTeddies(teddies) {
         teddyLink.setAttribute("href", "product.html?" + teddy._id);
         teddyPrice.classList.add("teddyPrice");
 
-        // intégration des nouveaux éléments au DOM
 
         main.appendChild(introList);
         main.appendChild(teddiesList);
@@ -56,8 +66,6 @@ function displayTeddies(teddies) {
         teddyBox.appendChild(teddyLink);
         teddyBox.appendChild(teddyPrice);
         teddyLink.appendChild(teddyImage);
-
-        // ajout de contenu
 
         introList.textContent = "Notre sélection d'ours en peluche faits à la main";
         teddyName.textContent = teddy.name;

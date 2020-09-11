@@ -124,12 +124,11 @@ function displayCard(teddy) {
     for (let color of teddy.colors) {
         let teddyColorButtonOptions = document.createElement("option");
         teddyColorButtonOptions.classList.add("teddyColorButtonOptions");
-        teddyColorButtonOptions.setAttribute("value", color);
         teddyColorButton.appendChild(teddyColorButtonOptions);
         teddyColorButtonOptions.textContent = color;
     }
 
-    // stockage des données dans le localstorage
+    // ajout au panier et  stockage des données dans le localstorage
 
     function addToCart() {
 

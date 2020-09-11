@@ -188,6 +188,7 @@ main.appendChild(orderValidation);
 // Récupération des données du localstorage
 
 let teddies = JSON.parse(localStorage.getItem("products"));
+// suppression de la couleur et restockage //
 let total = 0;
 
 // Affichage du panier
@@ -415,8 +416,6 @@ function sendOrder() {
                     .then(function (data) {
                         localStorage.setItem("orderId", JSON.stringify(data.orderId));
                         localStorage.setItem("totalPrice", JSON.stringify(cartTotalChamp.textContent));
-                        /*localStorage.removeItem("contact");*/
-                        localStorage.removeItem("teddies");
                         localStorage.removeItem("products");
                         let formChampInput = document.getElementsByClassName("formChampInput");
                         for (let i of formChampInput) {

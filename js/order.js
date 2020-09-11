@@ -1,16 +1,12 @@
-// Récupération des éléments du DOM
-
-let main = document.querySelector("main");
-
-// Récupération des infos du localstorage (infos du contact, numéro de commande et montant total)
+// Récupération des données du localstorage
 
 let orderId = JSON.parse(localStorage.getItem("orderId"));
 let totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
 let contact = JSON.parse(localStorage.getItem("contact"));
 
-// Création des nouveaux éléments du DOM
+// Affichage du résumé de commande : remerciements personnalisés, numéro et montant total de la commande.
 
-// Résumé de commande
+let main = document.querySelector("main");
 
 let orderSummaryBox = document.createElement("section");
 orderSummaryBox.classList.add("orderSummaryBox");
@@ -58,4 +54,6 @@ orderInformations.classList.add("orderInformations");
 orderSummaryBox.appendChild(orderInformations);
 orderInformations.textContent = "Votre commande est bien enregistrée. Elle sera traitée dès réception de votre paiement.";
 
+// Suppression des données du localStorage
 
+localStorage.clear();

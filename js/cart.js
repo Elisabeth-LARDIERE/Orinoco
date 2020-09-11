@@ -1,10 +1,25 @@
-// Récupération des éléments du DOM
+// Récupération des données du localstorage
+
+let teddies = JSON.parse(localStorage.getItem("products"));
+let cartCounter = JSON.parse(localStorage.getItem("cartCounter")) || 0;
+
+// Affichage du nombre d'articles dans le panier sur le compteur-panier (header)
+
+let cartCounterNumber = document.getElementsByClassName("cartCounterNumber");
+
+function loadCartCounter() {
+
+    for (let i of cartCounterNumber) {
+        i.textContent = cartCounter;
+    }
+}
+loadCartCounter();
+
+// Création des éléments génériques de la page panier / validation de commande
 
 let main = document.querySelector("main");
 
-// Création des nouveaux éléments du DOM
-
-/* panier */
+// panier //
 
 let cartAndFormBox = document.createElement("div");
 cartAndFormBox.classList.add("cartAndFormBox");
@@ -37,7 +52,7 @@ cartTotalChamp.classList.add("cartTotalChamp");
 cartTotalChamp.setAttribute("type", "number");
 cartTotal.appendChild(cartTotalChamp);
 
-/* formulaire */
+// formulaire //
 
 let formBloc = document.createElement("section");
 formBloc.classList.add("formBloc");
@@ -185,17 +200,34 @@ orderValidation.setAttribute("type", "submit");
 orderValidation.setAttribute("value", "Valider votre commande");
 main.appendChild(orderValidation);
 
-// Récupération des données du localstorage
-
-let teddies = JSON.parse(localStorage.getItem("products"));
 // suppression de la couleur et restockage //
+
 let total = 0;
 
-// Affichage du panier
+// Mise à jour du compteur-panier aux changements de quantités
+
+function updateCounterCart() {
+
+    let teddiesQuantity = [];
+    for (let teddy of teddies) {
+        teddiesQuantity.push(parseInt(teddy.quantity));
+    }
+
+    let teddiesQuantityTotal = 0;
+    for (let i = 0; i < teddiesQuantity.length; i++) {
+        teddiesQuantityTotal += teddiesQuantity[i];
+    }
+
+    for(let i of cartCounterNumber) {
+        i.textContent = teddiesQuantityTotal;
+    }
+
+    localStorage.setItem("cartCounter", JSON.stringify(teddiesQuantityTotal));
+}
+
+// Affichage du panier personnalisé: une ligne-produit pour chaque ourson sélectionné.
 
 for (let teddy of teddies) {
-
-    // création des nouveaux éléments du DOM
 
     let cartRecap = document.createElement("div");
     cartRecap.classList.add("cartRecap");
@@ -274,6 +306,7 @@ for (let teddy of teddies) {
         cartPriceBox.textContent = String((recapPrice).toFixed(2)) + " € ";
         total += parseInt(teddy.price);
         cartTotalChamp.textContent = total.toFixed(2) + " € ";
+        updateCounterCart();
     }
 
     cartQuantityMore.addEventListener("click", increaseQuantity);
@@ -290,6 +323,7 @@ for (let teddy of teddies) {
             total -= parseInt(teddy.price);
             cartTotalChamp.textContent = total.toFixed(2) + " € ";
         }
+        updateCounterCart();
     }
 
     cartQuantityLess.addEventListener("click", decreaseQuantity);
@@ -304,14 +338,14 @@ for (let teddy of teddies) {
                 localStorage.setItem("products", JSON.stringify(teddies));
             }
         }
+        updateCounterCart();
     }
 
     cartTrashBox.addEventListener("click", removeProduct);
 
 }
 
-// Formulaire
-
+// Gestion du formulaire
 
 function addContact() {
     let contact = {
@@ -393,6 +427,8 @@ function validForm() {
 
 contactValidation.addEventListener("click", validForm);
 
+// Validation et envoi de commande à l'API
+
 function sendOrder() {
 
     let contact = JSON.parse(localStorage.getItem("contact"));
@@ -417,6 +453,8 @@ function sendOrder() {
                         localStorage.setItem("orderId", JSON.stringify(data.orderId));
                         localStorage.setItem("totalPrice", JSON.stringify(cartTotalChamp.textContent));
                         localStorage.removeItem("products");
+                        localStorage.removeItem("cartCounter");
+                        updateCounterCart();
                         let formChampInput = document.getElementsByClassName("formChampInput");
                         for (let i of formChampInput) {
                             i.value = "";

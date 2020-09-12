@@ -212,6 +212,7 @@ for (let teddy of teddies) {
     let cartProductImage = document.createElement("img");
     cartProductImage.classList.add("cartProductImage");
     cartProductImage.setAttribute("src", teddy.image);
+    cartProductImage.setAttribute("alt",String(teddy.name) + " en photo");
     cartProductBox.appendChild(cartProductImage);
 
     let cartProductName = document.createElement("p");
@@ -256,6 +257,7 @@ for (let teddy of teddies) {
 
     let cartTrashBoxLogo = document.createElement("i");
     cartTrashBoxLogo.classList.add("fas", "fa-trash-alt");
+    cartTrashBoxLogo.setAttribute("alt", "icône corbeille");
     cartTrashBox.appendChild(cartTrashBoxLogo);
 
     // affichage du prix pour chaque ligne d'articles

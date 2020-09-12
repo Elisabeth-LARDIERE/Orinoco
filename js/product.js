@@ -106,6 +106,7 @@ teddyOrderBox.appendChild(teddyOrderButton);
 
 let teddyOrderButtonLogo = document.createElement("i");
 teddyOrderButtonLogo.classList.add("fas", "fa-shopping-cart");
+teddyOrderButtonLogo.setAttribute("alt", "icône panier");
 teddyOrderButton.appendChild(teddyOrderButtonLogo);
 
 // Affichage des caractéristiques personnelles de l'ourson sélectionné
@@ -117,6 +118,7 @@ function displayCard(teddy) {
         teddyNameCard.textContent = teddy.name;
 
         teddyImageCard.setAttribute("src", teddy.imageUrl);
+        teddyImageCard.setAttribute("alt",String(teddy.name) + " en photo");
 
         teddyText.textContent = teddy.description;
 

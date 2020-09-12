@@ -59,9 +59,10 @@ function displayTeddies(teddies) {
         let teddyImage = document.createElement("img");
         teddyImage.classList.add("teddyImage");
         teddyImage.setAttribute("src", teddy.imageUrl);
+        teddyImage.setAttribute("alt",String(teddy.name) + " en photo");
         teddyLink.appendChild(teddyImage);
 
-        //prix de l'ourson
+        // prix de l'ourson
         let teddyPrice = document.createElement("p");
         teddyPrice.classList.add("teddyPrice");
         teddyBox.appendChild(teddyPrice);

@@ -8,7 +8,6 @@ fetch("http://localhost:3000/api/teddies/" + idTeddy)
             response.json()
                 .then(function (teddy) {
                     displayCard(teddy);
-                    loadCartCounter();
                 })
         }
     })
@@ -18,24 +17,18 @@ fetch("http://localhost:3000/api/teddies/" + idTeddy)
 
 // Récupération des données du localstorage
 
+let teddies = JSON.parse(localStorage.getItem("products")) || []
 let cartCounter = JSON.parse(localStorage.getItem("cartCounter")) || 0;
 
-// Affichage du nombre d'articles dans le panier sur le compteur-panier (header)
+//// Affichage du nombre d'articles présents dans le panier sur le compteur-panier (header)
 
-let cartCounterNumber = document.getElementsByClassName("cartCounterNumber");
+loadCartCounter();
 
-function loadCartCounter() {
-
-    for (let i of cartCounterNumber) {
-        i.textContent = cartCounter;
-    }
-}
-
-// Création des éléments génériques de la fiche individuelle de l'ourson sélectionné
+// Création des éléments génériques de la fiche individuelle-ourson
 
 let main = document.querySelector("main");
 
-// section vue détaillée et description de l'ours
+// section vue détaillée et description
 
 let teddyCard = document.createElement("section");
 teddyCard.classList.add("teddyCard");
@@ -115,7 +108,7 @@ let teddyOrderButtonLogo = document.createElement("i");
 teddyOrderButtonLogo.classList.add("fas", "fa-shopping-cart");
 teddyOrderButton.appendChild(teddyOrderButtonLogo);
 
-//Affichage des caractéristiques personnelles de l'ourson sélectionné
+// Affichage des caractéristiques personnelles de l'ourson sélectionné
 
 function displayCard(teddy) {
 
@@ -133,7 +126,6 @@ function displayCard(teddy) {
 
     // choix de la couleur
 
-
     for (let color of teddy.colors) {
         let teddyColorButtonOptions = document.createElement("option");
         teddyColorButtonOptions.classList.add("teddyColorButtonOptions");
@@ -142,29 +134,6 @@ function displayCard(teddy) {
     }
 
     // ajout au panier et  stockage des données dans le localstorage
-
-    let teddies = JSON.parse(localStorage.getItem("products")) || []
-
-    let cartCounterNumber = document.getElementsByClassName("cartCounterNumber");
-
-    function updateCounterCart() {
-
-        let teddiesQuantity = [];
-        for (let teddy of teddies) {
-            teddiesQuantity.push(parseInt(teddy.quantity));
-        }
-
-        let teddiesQuantityTotal = 0;
-        for (let i = 0; i < teddiesQuantity.length; i++) {
-            teddiesQuantityTotal += teddiesQuantity[i];
-        }
-
-        for(let i of cartCounterNumber) {
-            i.textContent = teddiesQuantityTotal;
-        }
-
-        localStorage.setItem("cartCounter", JSON.stringify(teddiesQuantityTotal));
-    }
 
     function addToCart() {
 

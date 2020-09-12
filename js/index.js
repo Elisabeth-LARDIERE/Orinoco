@@ -6,7 +6,6 @@ fetch("http://localhost:3000/api/teddies")
             response.json()
                 .then(function(teddies) {
                     displayTeddies(teddies);
-                    loadCartCounter();
                 });
         }
     })
@@ -18,16 +17,9 @@ fetch("http://localhost:3000/api/teddies")
 
 let cartCounter = JSON.parse(localStorage.getItem("cartCounter")) || 0;
 
-// Affichage du nombre d'articles dans le panier sur le compteur-panier (header)
+// Affichage du nombre d'articles présents dans le panier sur le compteur-panier (header)
 
-let cartCounterNumber = document.getElementsByClassName("cartCounterNumber");
-
-function loadCartCounter() {
-
-    for (let i of cartCounterNumber) {
-        i.textContent = cartCounter;
-    }
-}
+loadCartCounter();
 
 // Affichage de la liste des oursons
 

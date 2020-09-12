@@ -4,6 +4,13 @@ let orderId = JSON.parse(localStorage.getItem("orderId"));
 let totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
 let contact = JSON.parse(localStorage.getItem("contact"));
 
+// Remise à 0 du compteur-panier
+
+let cartCounterNumber = document.getElementsByClassName("cartCounterNumber");
+for(let i = 0; i < cartCounterNumber.length; i++) {
+    cartCounterNumber[i].textContent = "0";
+}
+
 // Affichage du résumé de commande : remerciements personnalisés, numéro et montant total de la commande.
 
 let main = document.querySelector("main");
@@ -57,3 +64,5 @@ orderInformations.textContent = "Votre commande est bien enregistrée. Elle sera
 // Suppression des données du localStorage
 
 localStorage.clear();
+
+

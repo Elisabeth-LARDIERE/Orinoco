@@ -5,14 +5,6 @@ let cartCounter = JSON.parse(localStorage.getItem("cartCounter")) || 0;
 
 // Affichage du nombre d'articles dans le panier sur le compteur-panier (header)
 
-let cartCounterNumber = document.getElementsByClassName("cartCounterNumber");
-
-function loadCartCounter() {
-
-    for (let i of cartCounterNumber) {
-        i.textContent = cartCounter;
-    }
-}
 loadCartCounter();
 
 // Création des éléments génériques de la page panier / validation de commande
@@ -200,30 +192,10 @@ orderValidation.setAttribute("type", "submit");
 orderValidation.setAttribute("value", "Valider votre commande");
 main.appendChild(orderValidation);
 
-// suppression de la couleur et restockage //
-
 let total = 0;
 
-// Mise à jour du compteur-panier aux changements de quantités
 
-function updateCounterCart() {
 
-    let teddiesQuantity = [];
-    for (let teddy of teddies) {
-        teddiesQuantity.push(parseInt(teddy.quantity));
-    }
-
-    let teddiesQuantityTotal = 0;
-    for (let i = 0; i < teddiesQuantity.length; i++) {
-        teddiesQuantityTotal += teddiesQuantity[i];
-    }
-
-    for(let i of cartCounterNumber) {
-        i.textContent = teddiesQuantityTotal;
-    }
-
-    localStorage.setItem("cartCounter", JSON.stringify(teddiesQuantityTotal));
-}
 
 // Affichage du panier personnalisé: une ligne-produit pour chaque ourson sélectionné.
 
@@ -296,7 +268,7 @@ for (let teddy of teddies) {
     total += recapPrice;
     cartTotalChamp.textContent = total.toFixed(2) + " € ";
 
-    // affichage et stockage des nouvelles données si augmentation ou diminution de la quantité
+    // affichage et stockage des nouvelles données si augmentation ou diminution de la quantité, ou si suppression d'un produit
 
     function increaseQuantity() {
         cartQuantityChamp.textContent++;
@@ -347,6 +319,8 @@ for (let teddy of teddies) {
 
 // Gestion du formulaire
 
+// création d'un contact
+
 function addContact() {
     let contact = {
         firstName: formFirstNameChampInput.value,
@@ -360,13 +334,14 @@ function addContact() {
     localStorage.setItem("contact", contact_json);
 }
 
+// conditions de validation du formulaire de contact
+
 let textValidation = /^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ][a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœç]+([-'\s][a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ][a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœç]+)?/;
 let addressValidation = /^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]+[-',\s]?/;
 let emailValidation = /^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})/;
 
 let formChampInput = document.getElementsByClassName("formChampInput");
 let formChampAlert = document.getElementsByClassName("formChampAlert");
-
 
 function validForm() {
 

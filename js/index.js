@@ -29,46 +29,50 @@ function loadCartCounter() {
     }
 }
 
-// Affichage de la liste des oursons avec le nom, l'image, le lien vers la fiche individuelle et le prix pour chacun
+// Affichage de la liste des oursons
 
 let main = document.querySelector("main");
 
 let introList = document.createElement("h2");
-let teddiesList = document.createElement("ul");
+introList.classList.add("introList");
+main.appendChild(introList);
+introList.textContent = "Notre sélection d'ours en peluche faits à la main";
 
+let teddiesList = document.createElement("ul");
+teddiesList.classList.add("teddiesList");
+main.appendChild(teddiesList);
 
 function displayTeddies(teddies) {
 
     for(let teddy of teddies) {
 
+        // carte de l'ourson
         let teddyBox= document.createElement("li");
-        let teddyName = document.createElement("h3");
-        let teddyImage = document.createElement("img");
-        let teddyLink = document.createElement("a");
-        let teddyPrice = document.createElement("p");
-
-
-        introList.classList.add("introList");
-        teddiesList.classList.add("teddiesList");
         teddyBox.classList.add("teddyBox");
+        teddiesList.appendChild(teddyBox);
+
+        // nom de l'ourson
+        let teddyName = document.createElement("h3");
         teddyName.classList.add("teddyName");
-        teddyImage.classList.add("teddyImage");
-        teddyImage.setAttribute("src", teddy.imageUrl);
+        teddyName.textContent = teddy.name;
+        teddyBox.appendChild(teddyName);
+
+        // lien vers la page individuelle de l'ourson
+        let teddyLink = document.createElement("a");
         teddyLink.classList.add("teddyLink");
         teddyLink.setAttribute("href", "product.html?" + teddy._id);
-        teddyPrice.classList.add("teddyPrice");
-
-
-        main.appendChild(introList);
-        main.appendChild(teddiesList);
-        teddiesList.appendChild(teddyBox);
-        teddyBox.appendChild(teddyName);
         teddyBox.appendChild(teddyLink);
-        teddyBox.appendChild(teddyPrice);
+
+        // image de l'ourson
+        let teddyImage = document.createElement("img");
+        teddyImage.classList.add("teddyImage");
+        teddyImage.setAttribute("src", teddy.imageUrl);
         teddyLink.appendChild(teddyImage);
 
-        introList.textContent = "Notre sélection d'ours en peluche faits à la main";
-        teddyName.textContent = teddy.name;
+        //prix de l'ourson
+        let teddyPrice = document.createElement("p");
+        teddyPrice.classList.add("teddyPrice");
+        teddyBox.appendChild(teddyPrice);
         teddyPrice.textContent = (teddy.price / 100).toFixed(2) + " €";
     }
 }

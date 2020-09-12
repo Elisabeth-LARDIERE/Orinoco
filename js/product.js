@@ -185,7 +185,8 @@ function displayCard(teddy) {
                 if (i.name !== newTeddy.name) {
                     teddies.push(newTeddy);
                     localStorage.setItem("products", JSON.stringify(teddies));
-                } else if (i.name === newTeddy.name) {
+                } else if (i.name === newTeddy.name) { /*fonctionne quand c'est le premier ours du panier, sinon
+                                                        ajoute une nouvelle ligne produit identique dans le panier !*/
                     i.quantity = i.quantity.replace(i.quantity, newTeddy.quantity);
                     localStorage.setItem("products", JSON.stringify(teddies));
                 }

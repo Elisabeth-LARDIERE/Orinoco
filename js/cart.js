@@ -257,7 +257,6 @@ for (let teddy of teddies) {
 
     let cartTrashBoxLogo = document.createElement("i");
     cartTrashBoxLogo.classList.add("fas", "fa-trash-alt");
-    cartTrashBoxLogo.setAttribute("alt", "icône corbeille");
     cartTrashBox.appendChild(cartTrashBoxLogo);
 
     // affichage du prix pour chaque ligne d'articles

@@ -51,7 +51,7 @@ a {
     text-decoration: none;
     color: black;
     font-family: "Josefin Sans", serif;
-    font-size: 2em;
+    font-size: 1.7em;
 }
 
 /*************** headings ***************/
@@ -60,9 +60,6 @@ h1 {
     font-family: "Marck Script", serif;
     font-size: 3.5em;
     font-weight: lighter;
-    align-self: center;
-    text-align: center;
-    padding-left: 250px;
 }
 
 h2 {
@@ -83,7 +80,7 @@ h4 {
     font-size: 1.3em;
     font-weight: lighter;
     padding-bottom: 10px;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 /*************** buttons ***************/
@@ -96,20 +93,20 @@ h4 {
 /******************** HEADER ********************/
 
 header {
-    min-height: 15vh;
+    min-height: 10vh;
     background-color: #F3E9F1;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
-    width: 100px;
-    height: 45px;
+    width: 150px;
+    height: 68px;
     padding-left: 10px;
 }
 
 nav {
-    align-self: center;
     font-size: 0.8em;
     padding-right: 30px;
 }
@@ -130,21 +127,23 @@ nav li {
 
 .cartCounter {
     display: flex;
-    margin-left: 10px;
-    font-size: 1.2em;
+    margin-left: 5px;
 }
 
 .fa-shopping-cart {
+    font-size: 0.8em;
     align-self: center;
 }
 
 .cartCounterNumber {
     align-self: flex-end;
+    font-size: 0.6em;
 }
 
 /******************** MAIN ********************/
 
 main {
+    min-height: 80vh;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -161,7 +160,7 @@ main {
     flex-wrap: wrap;
     list-style: none;
     justify-content: space-around;
-    margin: 0 20px 60px;
+    margin: 0 20px 70px;
 }
 
 .teddyBox {
@@ -419,7 +418,6 @@ main {
     display: flex;
     flex-direction: column;
     width: 40%;
-
     margin-right: 15px;
 }
 
@@ -510,15 +508,12 @@ main {
 
 /******************** FOOTER ********************/
 
-footer {
-    min-height: 15vh;
-    background-color: #F3E9F1;
-}
-
 #contact {
+    min-height: 10vh;
+    background-color: #F3E9F1;
     display: flex;
     justify-content: space-between;
-    margin: 20px 40px;
+    padding: 10px 20px;
 }
 
 .infos {

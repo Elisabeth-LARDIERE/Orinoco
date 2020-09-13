@@ -118,7 +118,7 @@ function displayCard(teddy) {
         teddyNameCard.textContent = teddy.name;
 
         teddyImageCard.setAttribute("src", teddy.imageUrl);
-        teddyImageCard.setAttribute("alt",String(teddy.name) + " en photo");
+        teddyImageCard.setAttribute("alt", String(teddy.name) + " en photo");
 
         teddyText.textContent = teddy.description;
 
@@ -145,30 +145,26 @@ function displayCard(teddy) {
             image: teddy.imageUrl,
             price: (teddy.price / 100).toFixed(2) + " €",
             quantity: teddyQuantityButton.value,
-            color: teddyColorButton.value
         };
 
-        if (teddies.length === 0) {
-            teddies.push(newTeddy);
-            localStorage.setItem("products", JSON.stringify(teddies));
-        } else if (teddies.length > 0) {
-            for (let i of teddies) {
-                if (i.name !== newTeddy.name) {
-                    teddies.push(newTeddy);
-                    localStorage.setItem("products", JSON.stringify(teddies));
-                } else if (i.name === newTeddy.name) { /*fonctionne quand c'est le premier ours du panier, sinon
-                                                        ajoute une nouvelle ligne produit identique dans le panier !*/
-                    i.quantity = i.quantity.replace(i.quantity, newTeddy.quantity);
-                    localStorage.setItem("products", JSON.stringify(teddies));
-                }
+        let found = false;
+        for (let i = 0; i < teddies.length && found === false; i++) {
+            if (teddies[i].name === newTeddy.name) {
+                found = true;
+                let newQuantity = parseInt(newTeddy.quantity) + parseInt(teddies[i].quantity);
+                teddies[i].quantity = teddies[i].quantity.replace(teddies[i].quantity, String(newQuantity));
             }
         }
 
+        if (found === false) {
+            teddies.push(newTeddy);
+        }
+
+        localStorage.setItem("products", JSON.stringify(teddies));
         updateCounterCart();
     }
 
-    teddyOrderButton.addEventListener("click", addToCart);
-
+teddyOrderButton.addEventListener("click", addToCart);
 }
 
 

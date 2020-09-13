@@ -334,16 +334,16 @@ main {
     display: flex;
     align-items: center;
     font-family: "Marck Script", serif;
-    font-size: 1.5em;
-    width: 55%;
+    font-size: 1.8em;
+    width: 65%;
 }
 
 .cartProductImage {
-    width: 30%;
+    width: 35%;
 }
 
 .cartProductName {
-    padding: 20px;
+    padding-left: 40px;
 }
 
 .cartProductColor {

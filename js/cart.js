@@ -220,11 +220,6 @@ for (let teddy of teddies) {
     cartProductBox.appendChild(cartProductName);
     cartProductName.textContent = teddy.name;
 
-    let cartProductColor = document.createElement("p");
-    cartProductColor.classList.add("cartProductColor");
-    cartProductBox.appendChild(cartProductColor);
-    cartProductColor.textContent = " - " + teddy.color;
-
     let cartQuantityBox = document.createElement("div");
     cartQuantityBox.classList.add("cartQuantityBox", "quantityBox");
     cartRecap.appendChild(cartQuantityBox);

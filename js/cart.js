@@ -189,15 +189,14 @@ contactValidation.textContent = "Enregistrer vos coordonnées";
 let orderValidation = document.createElement("input");
 orderValidation.classList.add("orderValidation");
 orderValidation.setAttribute("type", "submit");
+orderValidation.setAttribute("disabled", "disabled");
 orderValidation.setAttribute("value", "Valider votre commande");
 main.appendChild(orderValidation);
 
+
+// Affichage du panier personnalisé: une ligne-produit pour chaque ourson sélectionné
+
 let total = 0;
-
-
-
-
-// Affichage du panier personnalisé: une ligne-produit pour chaque ourson sélectionné.
 
 for (let teddy of teddies) {
 
@@ -393,6 +392,7 @@ function validForm() {
     } else {
         addContact();
         alert("coordonnées validées !");
+        orderValidation.disabled = false;
     }
 }
 
@@ -434,6 +434,7 @@ function sendOrder() {
                         for (let i = 0; i < cartRecapBloc.length; i++) {
                             cartRecapBloc[i].innerHTML = "";
                         }
+                        cartTotalChamp.innerHTML = "";
                         location.href = "order.html";
                     })
             }

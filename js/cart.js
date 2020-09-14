@@ -195,7 +195,7 @@ main.appendChild(orderValidation);
 
 // Changement du titre du panier s'il est vide
 
-if(cartCounter === 0) {
+if (cartCounter === 0) {
     cartTitle.textContent = "Votre panier est vide !";
     cartTotal.textContent = "";
 }
@@ -309,7 +309,7 @@ for (let teddy of teddies) {
             if (cartProductName.textContent === teddy.name) {
                 teddies = teddies.filter(item => item !== teddy);
             }
-            if(teddies.length === 0) {
+            if (teddies.length === 0) {
                 cartTotal.textContent = "";
                 cartTitle.textContent = "Votre panier est vide !";
             }
@@ -341,12 +341,9 @@ function addContact() {
 
 // conditions de validation du formulaire de contact
 
-let textValidation = /^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ][a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœç]+([-'\s][a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ][a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœç]+)?/;
+let textValidation = /^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ][^0-9]+[-',\s]?/;
 let addressValidation = /^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]+[-',\s]?/;
-let emailValidation = /^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})/;
-
-let formChampInput = document.getElementsByClassName("formChampInput");
-let formChampAlert = document.getElementsByClassName("formChampAlert");
+let emailValidation = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 function validForm() {
 
@@ -358,8 +355,8 @@ function validForm() {
 
     } else if (textValidation.test(formFirstNameChampInput.value) === false) {
         formFirstNameChampAlert.textContent = "Saisie incorrecte";
-
     }
+
     formLastNameChampInput.addEventListener("focus", function () {
         formLastNameChampAlert.textContent = "";
     });
@@ -367,9 +364,9 @@ function validForm() {
         formLastNameChampAlert.textContent = "Veuillez renseigner votre nom";
 
     } else if (textValidation.test(formLastNameChampInput.value) === false) {
-
         formLastNameChampAlert.textContent = "Saisie incorrecte";
     }
+
     formAddressChampInput.addEventListener("focus", function () {
         formAddressChampAlert.textContent = "";
     });
@@ -377,9 +374,9 @@ function validForm() {
         formAddressChampAlert.textContent = "Veuillez renseigner votre adresse";
 
     } else if (addressValidation.test(formAddressChampInput.value) === false) {
-
         formAddressChampAlert.textContent = "Saisie incorrecte";
     }
+
     formCityChampInput.addEventListener("focus", function () {
         formCityChampAlert.textContent = "";
     });
@@ -387,9 +384,9 @@ function validForm() {
         formCityChampAlert.textContent = "Veuillez renseigner votre ville";
 
     } else if (textValidation.test(formCityChampInput.value) === false) {
-
         formCityChampAlert.textContent = "Saisie incorrecte";
     }
+
     formEmailChampInput.addEventListener("focus", function () {
         formEmailChampAlert.textContent = "";
     });
@@ -397,8 +394,8 @@ function validForm() {
         formEmailChampAlert.textContent = "Veuillez renseigner votre email";
 
     } else if (emailValidation.test(formEmailChampInput.value) === false) {
-
         formEmailChampAlert.textContent = "Saisie incorrecte";
+
     } else {
         addContact();
         alert("coordonnées validées !");

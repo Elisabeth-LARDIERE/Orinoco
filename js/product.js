@@ -166,7 +166,7 @@ function displayCard(teddy) {
         updateCounterCart();
     }
 
-teddyOrderButton.addEventListener("click", addToCart);
+    teddyOrderButton.addEventListener("click", addToCart);
 }
 
 

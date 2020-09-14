@@ -1,15 +1,15 @@
 // Récupération de la liste des oursons auprès de l'API
 
 fetch("http://localhost:3000/api/teddies")
-    .then(function(response) {
-        if(response.ok) {
+    .then(function (response) {
+        if (response.ok) {
             response.json()
-                .then(function(teddies) {
+                .then(function (teddies) {
                     displayTeddies(teddies);
                 });
         }
     })
-    .catch(function() {
+    .catch(function () {
         alert("erreur");
     });
 
@@ -36,10 +36,10 @@ main.appendChild(teddiesList);
 
 function displayTeddies(teddies) {
 
-    for(let teddy of teddies) {
+    for (let teddy of teddies) {
 
         // carte de l'ourson
-        let teddyBox= document.createElement("li");
+        let teddyBox = document.createElement("li");
         teddyBox.classList.add("teddyBox");
         teddiesList.appendChild(teddyBox);
 
@@ -59,7 +59,7 @@ function displayTeddies(teddies) {
         let teddyImage = document.createElement("img");
         teddyImage.classList.add("teddyImage");
         teddyImage.setAttribute("src", teddy.imageUrl);
-        teddyImage.setAttribute("alt",String(teddy.name) + " en photo");
+        teddyImage.setAttribute("alt", String(teddy.name) + " en photo");
         teddyLink.appendChild(teddyImage);
 
         // prix de l'ourson

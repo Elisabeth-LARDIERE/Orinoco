@@ -7,7 +7,7 @@ let contact = JSON.parse(localStorage.getItem("contact"));
 // Remise à 0 du compteur-panier
 
 let cartCounterNumber = document.getElementsByClassName("cartCounterNumber");
-for(let i = 0; i < cartCounterNumber.length; i++) {
+for (let i = 0; i < cartCounterNumber.length; i++) {
     cartCounterNumber[i].textContent = "0";
 }
 

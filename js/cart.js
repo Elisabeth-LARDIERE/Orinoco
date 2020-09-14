@@ -193,6 +193,12 @@ orderValidation.setAttribute("disabled", "disabled");
 orderValidation.setAttribute("value", "Valider votre commande");
 main.appendChild(orderValidation);
 
+// Changement du titre du panier s'il est vide
+
+if(cartCounter === 0) {
+    cartTitle.textContent = "Votre panier est vide !";
+    cartTotal.textContent = "";
+}
 
 // Affichage du panier personnalisé: une ligne-produit pour chaque ourson sélectionné
 
@@ -211,7 +217,7 @@ for (let teddy of teddies) {
     let cartProductImage = document.createElement("img");
     cartProductImage.classList.add("cartProductImage");
     cartProductImage.setAttribute("src", teddy.image);
-    cartProductImage.setAttribute("alt",String(teddy.name) + " en photo");
+    cartProductImage.setAttribute("alt", String(teddy.name) + " en photo");
     cartProductBox.appendChild(cartProductImage);
 
     let cartProductName = document.createElement("p");
@@ -302,9 +308,13 @@ for (let teddy of teddies) {
             cartRecap.remove();
             if (cartProductName.textContent === teddy.name) {
                 teddies = teddies.filter(item => item !== teddy);
-                localStorage.setItem("products", JSON.stringify(teddies));
+            }
+            if(teddies.length === 0) {
+                cartTotal.textContent = "";
+                cartTitle.textContent = "Votre panier est vide !";
             }
         }
+        localStorage.setItem("products", JSON.stringify(teddies));
         updateCounterCart();
     }
 
@@ -434,7 +444,7 @@ function sendOrder() {
                         for (let i = 0; i < cartRecapBloc.length; i++) {
                             cartRecapBloc[i].innerHTML = "";
                         }
-                        cartTotalChamp.innerHTML = "";
+                        cartTotal.innerHTML = "";
                         location.href = "order.html";
                     })
             }

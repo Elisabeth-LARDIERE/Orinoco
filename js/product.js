@@ -153,11 +153,13 @@ function displayCard(teddy) {
                 found = true;
                 let newQuantity = parseInt(newTeddy.quantity) + parseInt(teddies[i].quantity);
                 teddies[i].quantity = teddies[i].quantity.replace(teddies[i].quantity, String(newQuantity));
+                alert("Article ajouté au panier !");
             }
         }
 
         if (found === false) {
             teddies.push(newTeddy);
+            alert("Article ajouté au panier !");
         }
 
         localStorage.setItem("products", JSON.stringify(teddies));

@@ -189,7 +189,6 @@ contactValidation.textContent = "Enregistrer vos coordonnées";
 let orderValidation = document.createElement("input");
 orderValidation.classList.add("orderValidation");
 orderValidation.setAttribute("type", "submit");
-orderValidation.setAttribute("disabled", "disabled");
 orderValidation.setAttribute("value", "Valider votre commande");
 main.appendChild(orderValidation);
 
@@ -198,6 +197,12 @@ main.appendChild(orderValidation);
 if (cartCounter === 0) {
     cartTitle.textContent = "Votre panier est vide !";
     cartTotal.textContent = "";
+    let formChampInput = document.getElementsByClassName("formChampInput");
+    for (let i of formChampInput) {
+        i.setAttribute("disabled", "disabled");
+    }
+    contactValidation.setAttribute("disabled", "disabled");
+    orderValidation.setAttribute("disabled", "disabled");
 }
 
 // Affichage du panier personnalisé: une ligne-produit pour chaque ourson sélectionné
@@ -312,6 +317,8 @@ for (let teddy of teddies) {
             if (teddies.length === 0) {
                 cartTotal.textContent = "";
                 cartTitle.textContent = "Votre panier est vide !";
+                contactValidation.setAttribute("disabled", "disabled");
+                orderValidation.setAttribute("disabled", "disabled");
             }
         }
         localStorage.setItem("products", JSON.stringify(teddies));
@@ -341,7 +348,7 @@ function addContact() {
 
 // conditions de validation du formulaire de contact
 
-let textValidation = /^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ][^0-9]+[-',\s]?/;
+let textValidation = /^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]+[-',\s]?/;
 let addressValidation = /^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]+[-',\s]?/;
 let emailValidation = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 

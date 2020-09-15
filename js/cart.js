@@ -190,6 +190,7 @@ let orderValidation = document.createElement("input");
 orderValidation.classList.add("orderValidation");
 orderValidation.setAttribute("type", "submit");
 orderValidation.setAttribute("value", "Valider votre commande");
+orderValidation.setAttribute("disabled", "disabled");
 main.appendChild(orderValidation);
 
 // Si panier est vide : changement titre, suppression champ Total, désactivation champs de formulaire et boutons de validation
@@ -202,7 +203,6 @@ if (cartCounter === 0) {
         i.setAttribute("disabled", "disabled");
     }
     contactValidation.setAttribute("disabled", "disabled");
-    orderValidation.setAttribute("disabled", "disabled");
 }
 
 // Affichage du panier personnalisé
@@ -323,8 +323,11 @@ function customCart() {
                 if (teddies.length === 0) {
                     cartTotal.textContent = "";
                     cartTitle.textContent = "Votre panier est vide !";
+                    let formChampInput = document.getElementsByClassName("formChampInput");
+                    for (let i of formChampInput) {
+                        i.setAttribute("disabled", "disabled");
+                    }
                     contactValidation.setAttribute("disabled", "disabled");
-                    orderValidation.setAttribute("disabled", "disabled");
                 }
             }
             localStorage.setItem("products", JSON.stringify(teddies));

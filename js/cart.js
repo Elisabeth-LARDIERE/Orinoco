@@ -192,7 +192,7 @@ orderValidation.setAttribute("type", "submit");
 orderValidation.setAttribute("value", "Valider votre commande");
 main.appendChild(orderValidation);
 
-// Changement du titre du panier s'il est vide
+// Si panier est vide : changement titre, suppression champ Total, désactivation champs de formulaire et boutons de validation
 
 if (cartCounter === 0) {
     cartTitle.textContent = "Votre panier est vide !";
@@ -205,128 +205,134 @@ if (cartCounter === 0) {
     orderValidation.setAttribute("disabled", "disabled");
 }
 
-// Affichage du panier personnalisé: une ligne-produit pour chaque ourson sélectionné
+// Affichage du panier personnalisé
 
-let total = 0;
+customCart();
 
-for (let teddy of teddies) {
+function customCart() {
 
-    let cartRecap = document.createElement("div");
-    cartRecap.classList.add("cartRecap");
-    cartRecapBloc.appendChild(cartRecap);
+    let total = 0;
 
-    let cartProductBox = document.createElement("div");
-    cartProductBox.classList.add("cartProductBox");
-    cartRecap.appendChild(cartProductBox);
+// une ligne-produit résumé par ourson au panier
 
-    let cartProductImage = document.createElement("img");
-    cartProductImage.classList.add("cartProductImage");
-    cartProductImage.setAttribute("src", teddy.image);
-    cartProductImage.setAttribute("alt", String(teddy.name) + " en photo");
-    cartProductBox.appendChild(cartProductImage);
+    for (let teddy of teddies) {
 
-    let cartProductName = document.createElement("p");
-    cartProductName.classList.add("cartProductName");
-    cartProductBox.appendChild(cartProductName);
-    cartProductName.textContent = teddy.name;
+        let cartRecap = document.createElement("div");
+        cartRecap.classList.add("cartRecap");
+        cartRecapBloc.appendChild(cartRecap);
 
-    let cartQuantityBox = document.createElement("div");
-    cartQuantityBox.classList.add("cartQuantityBox", "quantityBox");
-    cartRecap.appendChild(cartQuantityBox);
+        let cartProductBox = document.createElement("div");
+        cartProductBox.classList.add("cartProductBox");
+        cartRecap.appendChild(cartProductBox);
 
-    let cartQuantityLess = document.createElement("button");
-    cartQuantityLess.classList.add("cartQuantityLess", "quantityLess");
-    cartQuantityBox.appendChild(cartQuantityLess);
-    cartQuantityLess.textContent = " - ";
+        let cartProductImage = document.createElement("img");
+        cartProductImage.classList.add("cartProductImage");
+        cartProductImage.setAttribute("src", teddy.image);
+        cartProductImage.setAttribute("alt", String(teddy.name) + " en photo");
+        cartProductBox.appendChild(cartProductImage);
 
-    let cartQuantityChamp = document.createElement("button");
-    cartQuantityChamp.classList.add("cartQuantityChamp", "quantityChamp");
-    cartQuantityChamp.setAttribute("type", "number");
-    cartQuantityChamp.setAttribute("min", "1");
-    cartQuantityBox.appendChild(cartQuantityChamp);
-    cartQuantityChamp.textContent = teddy.quantity;
+        let cartProductName = document.createElement("p");
+        cartProductName.classList.add("cartProductName");
+        cartProductBox.appendChild(cartProductName);
+        cartProductName.textContent = teddy.name;
 
-    let cartQuantityMore = document.createElement("button");
-    cartQuantityMore.classList.add("cartQuantityMore", "quantityMore");
-    cartQuantityBox.appendChild(cartQuantityMore);
-    cartQuantityMore.textContent = " + ";
+        let cartQuantityBox = document.createElement("div");
+        cartQuantityBox.classList.add("cartQuantityBox", "quantityBox");
+        cartRecap.appendChild(cartQuantityBox);
 
-    let cartPriceBox = document.createElement("button");
-    cartPriceBox.classList.add("cartPriceBox");
-    cartPriceBox.setAttribute("type", "number");
-    cartRecap.appendChild(cartPriceBox);
+        let cartQuantityLess = document.createElement("button");
+        cartQuantityLess.classList.add("cartQuantityLess", "quantityLess");
+        cartQuantityBox.appendChild(cartQuantityLess);
+        cartQuantityLess.textContent = " - ";
 
-    let cartTrashBox = document.createElement("button");
-    cartTrashBox.classList.add("cartTrashBox");
-    cartRecap.appendChild(cartTrashBox);
+        let cartQuantityChamp = document.createElement("button");
+        cartQuantityChamp.classList.add("cartQuantityChamp", "quantityChamp");
+        cartQuantityChamp.setAttribute("type", "number");
+        cartQuantityChamp.setAttribute("min", "1");
+        cartQuantityBox.appendChild(cartQuantityChamp);
+        cartQuantityChamp.textContent = teddy.quantity;
 
-    let cartTrashBoxLogo = document.createElement("i");
-    cartTrashBoxLogo.classList.add("fas", "fa-trash-alt");
-    cartTrashBox.appendChild(cartTrashBoxLogo);
+        let cartQuantityMore = document.createElement("button");
+        cartQuantityMore.classList.add("cartQuantityMore", "quantityMore");
+        cartQuantityBox.appendChild(cartQuantityMore);
+        cartQuantityMore.textContent = " + ";
 
-    // affichage du prix pour chaque ligne d'articles
+        let cartPriceBox = document.createElement("button");
+        cartPriceBox.classList.add("cartPriceBox");
+        cartPriceBox.setAttribute("type", "number");
+        cartRecap.appendChild(cartPriceBox);
 
-    let recapPrice = parseInt(teddy.price) * teddy.quantity;
-    cartPriceBox.textContent = String((recapPrice).toFixed(2)) + " € ";
+        let cartTrashBox = document.createElement("button");
+        cartTrashBox.classList.add("cartTrashBox");
+        cartRecap.appendChild(cartTrashBox);
 
-    // affichage du total
+        let cartTrashBoxLogo = document.createElement("i");
+        cartTrashBoxLogo.classList.add("fas", "fa-trash-alt");
+        cartTrashBox.appendChild(cartTrashBoxLogo);
 
-    total += recapPrice;
-    cartTotalChamp.textContent = total.toFixed(2) + " € ";
+        // affichage du prix pour chaque ligne d'articles
 
-    // affichage et stockage des nouvelles données si augmentation ou diminution de la quantité, ou si suppression d'un produit
-
-    function increaseQuantity() {
-        cartQuantityChamp.textContent++;
-        teddy.quantity++;
-        localStorage.setItem("products", JSON.stringify(teddy));
-        recapPrice = parseInt(teddy.price) * teddy.quantity;
+        let recapPrice = parseInt(teddy.price) * teddy.quantity;
         cartPriceBox.textContent = String((recapPrice).toFixed(2)) + " € ";
-        total += parseInt(teddy.price);
+
+        // affichage du total
+
+        total += recapPrice;
         cartTotalChamp.textContent = total.toFixed(2) + " € ";
-        updateCounterCart();
-    }
 
-    cartQuantityMore.addEventListener("click", increaseQuantity);
+        // affichage et stockage des nouvelles données si augmentation ou diminution de la quantité, ou si suppression d'un produit
 
-    function decreaseQuantity() {
-        if (cartQuantityChamp.textContent <= 1) {
-            cartQuantityChamp.textContent = "1";
-        } else {
-            cartQuantityChamp.textContent--;
-            teddy.quantity--;
+        function increaseQuantity() {
+            cartQuantityChamp.textContent++;
+            teddy.quantity++;
             localStorage.setItem("products", JSON.stringify(teddy));
             recapPrice = parseInt(teddy.price) * teddy.quantity;
             cartPriceBox.textContent = String((recapPrice).toFixed(2)) + " € ";
-            total -= parseInt(teddy.price);
+            total += parseInt(teddy.price);
             cartTotalChamp.textContent = total.toFixed(2) + " € ";
+            updateCounterCart();
         }
-        updateCounterCart();
-    }
 
-    cartQuantityLess.addEventListener("click", decreaseQuantity);
+        cartQuantityMore.addEventListener("click", increaseQuantity);
 
-    function removeProduct() {
-        if (cartRecapBloc.innerHTML !== "") {
-            total -= recapPrice;
-            cartTotalChamp.textContent = total.toFixed(2) + " € ";
-            cartRecap.remove();
-            if (cartProductName.textContent === teddy.name) {
-                teddies = teddies.filter(item => item !== teddy);
+        function decreaseQuantity() {
+            if (cartQuantityChamp.textContent <= 1) {
+                cartQuantityChamp.textContent = "1";
+            } else {
+                cartQuantityChamp.textContent--;
+                teddy.quantity--;
+                localStorage.setItem("products", JSON.stringify(teddy));
+                recapPrice = parseInt(teddy.price) * teddy.quantity;
+                cartPriceBox.textContent = String((recapPrice).toFixed(2)) + " € ";
+                total -= parseInt(teddy.price);
+                cartTotalChamp.textContent = total.toFixed(2) + " € ";
             }
-            if (teddies.length === 0) {
-                cartTotal.textContent = "";
-                cartTitle.textContent = "Votre panier est vide !";
-                contactValidation.setAttribute("disabled", "disabled");
-                orderValidation.setAttribute("disabled", "disabled");
-            }
+            updateCounterCart();
         }
-        localStorage.setItem("products", JSON.stringify(teddies));
-        updateCounterCart();
+
+        cartQuantityLess.addEventListener("click", decreaseQuantity);
+
+        function removeProduct() {
+            if (cartRecapBloc.innerHTML !== "") {
+                total -= recapPrice;
+                cartTotalChamp.textContent = total.toFixed(2) + " € ";
+                cartRecap.remove();
+                if (cartProductName.textContent === teddy.name) {
+                    teddies = teddies.filter(item => item !== teddy);
+                }
+                if (teddies.length === 0) {
+                    cartTotal.textContent = "";
+                    cartTitle.textContent = "Votre panier est vide !";
+                    contactValidation.setAttribute("disabled", "disabled");
+                    orderValidation.setAttribute("disabled", "disabled");
+                }
+            }
+            localStorage.setItem("products", JSON.stringify(teddies));
+            updateCounterCart();
+        }
+
+        cartTrashBox.addEventListener("click", removeProduct);
     }
-
-    cartTrashBox.addEventListener("click", removeProduct);
-
 }
 
 // Gestion du formulaire
@@ -412,11 +418,10 @@ function validForm() {
 
 contactValidation.addEventListener("click", validForm);
 
-// Validation et envoi de commande à l'API
+// Validation et envoi de commande au serveur
 
 function sendOrder() {
 
-    let contact = JSON.parse(localStorage.getItem("contact"));
     let productsId = [];
     for (let teddy of teddies) {
         let idTeddy = teddy.id;
@@ -424,7 +429,9 @@ function sendOrder() {
     }
     let productsId_json = JSON.stringify(productsId);
     localStorage.setItem("products", productsId_json);
+
     let products = JSON.parse(localStorage.getItem("products"));
+    let contact = JSON.parse(localStorage.getItem("contact"));
 
     fetch("http://localhost:3000/api/teddies/order", {
         method: "POST",

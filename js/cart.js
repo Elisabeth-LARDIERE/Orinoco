@@ -444,22 +444,8 @@ function sendOrder() {
         .then(function (response) {
             if (response.ok) {
                 response.json()
-                    .then(function (data) {
-                        localStorage.setItem("orderId", JSON.stringify(data.orderId));
-                        localStorage.setItem("totalPrice", JSON.stringify(cartTotalChamp.textContent));
-                        localStorage.removeItem("products");
-                        localStorage.removeItem("cartCounter");
-                        updateCounterCart();
-                        let formChampInput = document.getElementsByClassName("formChampInput");
-                        for (let i of formChampInput) {
-                            i.value = "";
-                        }
-                        let cartRecapBloc = document.getElementsByClassName("cartRecapBloc");
-                        for (let i = 0; i < cartRecapBloc.length; i++) {
-                            cartRecapBloc[i].innerHTML = "";
-                        }
-                        cartTotal.innerHTML = "";
-                        location.href = "order.html";
+                    .then(function(data) {
+                        finalValidation(data);
                     })
             }
         })
@@ -470,6 +456,22 @@ function sendOrder() {
 
 orderValidation.addEventListener("click", sendOrder);
 
+function finalValidation(data) {
 
-
+    localStorage.setItem("orderId", JSON.stringify(data.orderId));
+    localStorage.setItem("totalPrice", JSON.stringify(cartTotalChamp.textContent));
+    localStorage.removeItem("products");
+    localStorage.removeItem("cartCounter");
+    updateCounterCart();
+    let formChampInput = document.getElementsByClassName("formChampInput");
+    for (let i of formChampInput) {
+        i.value = "";
+    }
+    let cartRecapBloc = document.getElementsByClassName("cartRecapBloc");
+    for (let i = 0; i < cartRecapBloc.length; i++) {
+        cartRecapBloc[i].innerHTML = "";
+    }
+    cartTotal.innerHTML = "";
+    location.href = "order.html";
+}
 

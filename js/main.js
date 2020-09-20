@@ -23,10 +23,9 @@ function updateCounterCart() {
         teddiesQuantityTotal += teddiesQuantity[i];
     }
 
-    for(let i of cartCounterNumber) {
+    for (let i of cartCounterNumber) {
         i.textContent = teddiesQuantityTotal;
     }
 
     localStorage.setItem("cartCounter", JSON.stringify(teddiesQuantityTotal));
 }
-

@@ -168,7 +168,3 @@ function displayCard(teddy) {
 
     teddyOrderButton.addEventListener("click", addToCart);
 }
-
-
-
-

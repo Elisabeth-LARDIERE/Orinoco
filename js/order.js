@@ -64,5 +64,3 @@ orderInformations.textContent = "Votre commande est bien enregistrée. Elle sera
 // Suppression des données du localStorage
 
 localStorage.clear();
-
-

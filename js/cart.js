@@ -444,7 +444,7 @@ function sendOrder() {
         .then(function (response) {
             if (response.ok) {
                 response.json()
-                    .then(function(data) {
+                    .then(function (data) {
                         finalValidation(data);
                     })
             }
@@ -474,4 +474,3 @@ function finalValidation(data) {
     cartTotal.innerHTML = "";
     location.href = "order.html";
 }
-

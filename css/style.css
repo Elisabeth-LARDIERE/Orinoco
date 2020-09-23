@@ -34,7 +34,7 @@
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    /*min-height: 100vh;*/
 }
 
 /*************** links ***************/
@@ -52,6 +52,7 @@ h1 {
     font-size: 3em;
     font-weight: lighter;
     text-align: center;
+    padding-bottom: 20px;
 }
 
 h2 {
@@ -85,8 +86,13 @@ h4 {
 /******************** HEADER ********************/
 
 header {
-    min-height: 10vh;
+    /*min-height: 10vh;*/
     background-color: #F3E9F1;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -107,7 +113,7 @@ nav li {
     padding: 15px;
 }
 
-.menu {
+.navBar {
     display: flex;
     justify-content: space-between;
     list-style: none;
@@ -154,7 +160,7 @@ main {
     flex-wrap: wrap;
     list-style: none;
     justify-content: space-around;
-    margin: 0 20px 70px;
+    margin: 0 20px 80px;
 }
 
 .teddyBox {
@@ -511,7 +517,7 @@ main {
 /******************** FOOTER ********************/
 
 #contact {
-    min-height: 10vh;
+    /*min-height: 10vh;*/
     background-color: #F3E9F1;
     display: flex;
     justify-content: space-between;

@@ -1,0 +1,394 @@
+/******************** MEDIA QUERIES ********************/
+
+/********** Extra Large Devices **********/
+
+@media screen and (min-width: 1380px) {
+
+    /*************** MAIN ***************/
+
+    .main_index {
+        justify-content: space-evenly;
+    }
+}
+
+
+@media screen and (max-width: 1379px) {
+
+    /*************** MAIN ***************/
+
+    /********** Liste **********/
+
+    .introList {
+        margin-top: 40px;
+    }
+
+    .teddiesList {
+        justify-content: center;
+    }
+
+    .teddyBox {
+        margin: 50px 40px 30px;
+    }
+
+    /********** Panier et formulaire de contact **********/
+
+    /***** panier *****/
+
+    .cartPriceBox, .cartQuantityChamp {
+        font-size: 0.9em;
+    }
+
+    .cartTotalChamp {
+        font-size: 1em;
+    }
+
+    /***** formulaire *****/
+
+    .contactValidation {
+        font-size: 0.7em;
+    }
+
+    .orderValidation {
+        font-size: 1.2em;
+    }
+}
+
+/********** Large Devices **********/
+
+@media screen and (max-width: 1024px) {
+
+    /*************** HEADER ***************/
+
+    .logo {
+        width: 15%;
+    }
+
+    /*************** MAIN ***************/
+
+    /********** Liste **********/
+
+    .introList {
+        margin-top: 60px;
+    }
+
+    .teddiesList {
+        margin-bottom: 120px;
+    }
+
+    /********** Fiche produit ours **********/
+
+    .main_product {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /***** section vue détaillée et description ours *****/
+
+    .teddyCard {
+        width: 70%;
+        margin: 0 0 100px;
+    }
+
+    /***** section options et ajout au pnier *****/
+
+    .teddyOrderBox {
+        width: 60%;
+        justify-content: center;
+    }
+
+    /********** Panier et formulaire de contact **********/
+
+    .cartAndFormBox {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cartBloc, .formBloc {
+        width: 90%;
+        margin: 20px 0;
+    }
+
+    /***** panier *****/
+
+    .cartRecap {
+        margin-bottom: 20px;
+    }
+
+    /***** formulaire *****/
+
+    .formContact {
+        padding: 10px;
+    }
+
+    .contactValidation {
+        width: 40%;
+        align-self: center;
+    }
+
+    .orderValidation {
+        width: 40%;
+    }
+
+}
+
+/********** Medium Devices **********/
+
+
+@media screen and (max-width: 768px) {
+
+    /********** headings **********/
+
+    h1 {
+        font-size: 2.3em;
+        margin-top: 10px;
+    }
+
+    /*************** MAIN ***************/
+
+    /********** Liste **********/
+
+    .teddiesList {
+        margin-bottom: 60px;
+    }
+
+    /*************** FOOTER ***************/
+
+    #contact {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .contactBox {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    .socialInfos {
+        justify-content: center;
+    }
+
+    .social i {
+        font-size: 1.5em;
+    }
+
+    .fab {
+        padding: 0 20px;
+    }
+}
+
+/********** Small Devices **********/
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+
+    /********** headings **********/
+
+    h1 {
+        font-size: 1.5em;
+        order: -1;
+        padding: 0;
+    }
+
+    h2 {
+        font-size: 1.4em;
+        padding: 0;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    h4 {
+        padding: 0;
+        font-size: 1em;
+    }
+
+    /*************** HEADER ***************/
+
+    .logo {
+        width: 30%;
+        padding: 0;
+    }
+
+    .menu {
+        flex-direction: column;
+    }
+
+    .navBar {
+        padding-right: 0;
+        font-size: 0.7em;
+    }
+
+    nav li {
+        padding: 10px 20px;
+    }
+
+    /*************** MAIN **************/
+
+    /********** Liste **********/
+
+    .teddiesList {
+        margin-bottom: 40px;
+    }
+
+    /********** Fiche produit **********/
+
+    /***** section vue détaillée et description de l'ours *****/
+
+    .main_product {
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0;
+    }
+
+    .teddyCard {
+        flex-direction: column;
+        margin: 30px 0;
+        width: 80%;
+    }
+
+    .teddyDescription {
+        font-size: 1em;
+        margin: 0;
+        text-align: center;
+    }
+
+    .teddyPriceCard {
+        order: -1;
+        padding-bottom: 10px;
+    }
+
+    /***** section options et ajout au panier *****/
+
+    .teddyOrderBox {
+        width: auto;
+        margin-bottom: 15px;
+    }
+
+    .teddyChoiceBox {
+        font-size: 1em;
+    }
+
+    .button {
+        height: 15px;
+    }
+
+    .teddyOrderButton {
+        width: 15%;
+    }
+
+    /********** Panier et formulaire de contact **********/
+
+    .cartTitle, .formTitle {
+        margin: 15px 0 0;
+    }
+
+    /***** panier *****/
+
+    .cartRecap {
+        margin: 10px 0;
+    }
+
+    .cartProductName {
+        font-size: 0.5em;
+        padding: 0 10px;
+    }
+
+    .cartButton {
+        height: fit-content;
+        font-size: 0.7em;
+        padding: 3px 0;
+    }
+
+    .cartPriceBox {
+        width: 25%;
+        margin-left: 15px;
+    }
+
+    .cartTrashBox {
+        margin-left: 15px;
+    }
+
+    .cartTotalChamp {
+        width: 20%;
+    }
+    .cartTotalTitle {
+        font-size: 1em;
+    }
+
+    .cartTotalChamp {
+        font-size: 0.8em;
+    }
+
+    /***** formulaire *****/
+
+    .formBloc {
+        margin:  0 10px;
+    }
+
+    .formContact {
+        font-size: 1em;
+        padding: 0;
+    }
+
+    .formChampBox {
+        height: 15px;
+    }
+
+    .contactValidation {
+        margin: 15px;
+        font-size: 0.8em;
+        width: 50%;
+    }
+
+    .orderValidation {
+        width: 80%;
+        font-size: 1.2em;
+    }
+
+    /********** Récapitulatif de commande et remerciements **********/
+
+    .main_order {
+        justify-content: center;
+    }
+
+    .orderSummaryBox {
+        margin: 10px;
+    }
+
+    .orderSummaryDetails {
+        margin: 50px 0;
+        text-align: center;
+    }
+
+    .orderSummaryNumber, .orderSummaryTotal {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .orderSummaryNumberTitle, .orderSummaryTotalTitle {
+        font-size: 1em;
+    }
+
+    .orderSummaryNumberId, .orderSummaryTotalPrice {
+        font-size: 1em;
+    }
+
+    .orderInformations {
+        font-size: 1em;
+        text-align: center;
+    }
+
+    /*************** FOOTER ***************/
+
+    footer {
+        min-height: 10vh;
+    }
+
+    #contact {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .infos {
+        font-size: 0.8em;
+    }
+}

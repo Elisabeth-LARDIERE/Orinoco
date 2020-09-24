@@ -34,7 +34,6 @@
 body {
     display: flex;
     flex-direction: column;
-    /*min-height: 100vh;*/
 }
 
 /*************** links ***************/
@@ -52,7 +51,7 @@ h1 {
     font-size: 3em;
     font-weight: lighter;
     text-align: center;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 h2 {
@@ -86,7 +85,6 @@ h4 {
 /******************** HEADER ********************/
 
 header {
-    /*min-height: 10vh;*/
     background-color: #F3E9F1;
     display: flex;
     flex-direction: column;
@@ -99,18 +97,8 @@ header {
 }
 
 .logo {
-    width: 150px;
-    height: 68px;
+    width: 10%;
     padding-left: 10px;
-}
-
-nav {
-    font-size: 0.8em;
-    padding-right: 30px;
-}
-
-nav li {
-    padding: 15px;
 }
 
 .navBar {
@@ -118,6 +106,12 @@ nav li {
     justify-content: space-between;
     list-style: none;
     font-family: "Josefin Sans", serif;
+    font-size: 0.9em;
+    padding-right: 20px;
+}
+
+nav li {
+    padding: 15px;
 }
 
 .cart {
@@ -132,11 +126,12 @@ nav li {
 .fa-shopping-cart {
     font-size: 0.8em;
     align-self: center;
+    margin-right: 5px;
 }
 
 .cartCounterNumber {
     align-self: flex-end;
-    font-size: 0.6em;
+    font-size: 0.7em;
 }
 
 /******************** MAIN ********************/
@@ -201,8 +196,7 @@ main {
     display: flex;
     width: 50%;
     margin-left: 20px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding: 15px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     align-items: center;
 }
@@ -211,8 +205,6 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 15px;
-    padding-right: 15px;
 }
 
 .teddyNameCard {
@@ -229,7 +221,7 @@ main {
     flex-direction: column;
     font-family: "Josefin Sans", serif;
     font-size: 1.5em;
-    margin-right: 15px;
+    margin: 0   15px;
     line-height: 1.2em;
 }
 
@@ -387,7 +379,7 @@ main {
 .cartTrashBox {
     width: 30px;
     height: 30px;
-    margin-left: 20px;
+    margin-left: 40px;
 }
 
 .cartTotal {
@@ -538,3 +530,6 @@ main {
 .social i {
     font-size: 2em;
 }
+
+
+

@@ -40,7 +40,7 @@ cartTotal.appendChild(cartTotalTitle);
 cartTotalTitle.textContent = "Total";
 
 let cartTotalChamp = document.createElement("button");
-cartTotalChamp.classList.add("cartTotalChamp");
+cartTotalChamp.classList.add("cartTotalChamp", "cartButton");
 cartTotalChamp.setAttribute("type", "number");
 cartTotal.appendChild(cartTotalChamp);
 
@@ -237,33 +237,33 @@ function customCart() {
         cartProductName.textContent = teddy.name;
 
         let cartQuantityBox = document.createElement("div");
-        cartQuantityBox.classList.add("cartQuantityBox", "quantityBox");
+        cartQuantityBox.classList.add("cartQuantityBox", "cartButton");
         cartRecap.appendChild(cartQuantityBox);
 
         let cartQuantityLess = document.createElement("button");
-        cartQuantityLess.classList.add("cartQuantityLess", "quantityLess");
+        cartQuantityLess.classList.add("cartQuantityLess", "cartButton");
         cartQuantityBox.appendChild(cartQuantityLess);
         cartQuantityLess.textContent = " - ";
 
         let cartQuantityChamp = document.createElement("button");
-        cartQuantityChamp.classList.add("cartQuantityChamp", "quantityChamp");
+        cartQuantityChamp.classList.add("cartQuantityChamp", "cartButton");
         cartQuantityChamp.setAttribute("type", "number");
         cartQuantityChamp.setAttribute("min", "1");
         cartQuantityBox.appendChild(cartQuantityChamp);
         cartQuantityChamp.textContent = teddy.quantity;
 
         let cartQuantityMore = document.createElement("button");
-        cartQuantityMore.classList.add("cartQuantityMore", "quantityMore");
+        cartQuantityMore.classList.add("cartQuantityMore", "cartButton");
         cartQuantityBox.appendChild(cartQuantityMore);
         cartQuantityMore.textContent = " + ";
 
         let cartPriceBox = document.createElement("button");
-        cartPriceBox.classList.add("cartPriceBox");
+        cartPriceBox.classList.add("cartPriceBox", "cartButton");
         cartPriceBox.setAttribute("type", "number");
         cartRecap.appendChild(cartPriceBox);
 
         let cartTrashBox = document.createElement("button");
-        cartTrashBox.classList.add("cartTrashBox");
+        cartTrashBox.classList.add("cartTrashBox", "cartButton");
         cartRecap.appendChild(cartTrashBox);
 
         let cartTrashBoxLogo = document.createElement("i");

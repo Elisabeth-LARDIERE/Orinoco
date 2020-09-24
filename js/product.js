@@ -20,7 +20,7 @@ fetch("http://localhost:3000/api/teddies/" + idTeddy)
 let teddies = JSON.parse(localStorage.getItem("products")) || []
 let cartCounter = JSON.parse(localStorage.getItem("cartCounter")) || 0;
 
-//// Affichage du nombre d'articles présents dans le panier sur le compteur-panier (header)
+// Affichage du nombre d'articles présents dans le panier sur le compteur-panier (header)
 
 loadCartCounter();
 

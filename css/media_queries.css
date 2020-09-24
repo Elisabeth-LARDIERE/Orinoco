@@ -363,10 +363,7 @@
         flex-direction: column;
     }
 
-    .orderSummaryNumberTitle, .orderSummaryTotalTitle {
-        font-size: 1em;
-    }
-
+    .orderSummaryNumberTitle, .orderSummaryTotalTitle,
     .orderSummaryNumberId, .orderSummaryTotalPrice {
         font-size: 1em;
     }

@@ -11,7 +11,7 @@ for (let i = 0; i < cartCounterNumber.length; i++) {
     cartCounterNumber[i].textContent = "0";
 }
 
-// Affichage du résumé de commande : remerciements personnalisés, numéro et montant total de la commande.
+// Affichage du résumé de commande : remerciements personnalisés, numéro et montant total de la commande
 
 let main = document.querySelector("main");
 

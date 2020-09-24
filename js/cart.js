@@ -11,7 +11,7 @@ loadCartCounter();
 
 let main = document.querySelector("main");
 
-// panier //
+// panier
 
 let cartAndFormBox = document.createElement("div");
 cartAndFormBox.classList.add("cartAndFormBox");
@@ -44,7 +44,7 @@ cartTotalChamp.classList.add("cartTotalChamp", "cartButton");
 cartTotalChamp.setAttribute("type", "number");
 cartTotal.appendChild(cartTotalChamp);
 
-// formulaire //
+// formulaire
 
 let formBloc = document.createElement("section");
 formBloc.classList.add("formBloc");
@@ -193,7 +193,7 @@ orderValidation.setAttribute("value", "Valider votre commande");
 orderValidation.setAttribute("disabled", "disabled");
 main.appendChild(orderValidation);
 
-// Si panier est vide : changement titre, suppression champ Total, désactivation champs de formulaire et boutons de validation
+// Si panier vide : changement titre, suppression champ Total, désactivation champs de formulaire et boutons de validation
 
 if (cartCounter === 0) {
     cartTitle.textContent = "Votre panier est vide !";
